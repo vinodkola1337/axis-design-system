@@ -50,6 +50,54 @@ CSS custom properties enable:
 
 ---
 
+## How Style Dictionary Works Internally
+
+Three steps happen in sequence every build:
+
+**1. Read** — loads all token JSON files and merges them into one token tree.
+
+**2. Resolve references** — `{color.gray.50}` is replaced with the referenced token's value. With `outputReferences: true` in the CSS platform, references are kept as `var()` chains instead of resolving to literals:
+
+```css
+/* outputReferences: false (default) — resolved to literal */
+--axis-color-background-default: #f8fafc;
+
+/* outputReferences: true — kept as var() chain */
+--axis-color-background-default: var(--axis-color-gray-50);
+```
+
+The `var()` form is better for theming — overriding `--axis-color-gray-50` at runtime cascades to everything that references it.
+
+**3. Transform + format** — applies transforms per platform, then writes files. Transforms convert raw token values into platform-appropriate formats:
+
+| Transform | Input | Output |
+|---|---|---|
+| `px` → `rem` | `16px` | `1rem` |
+| color to hex | `rgb(59,130,246)` | `#3b82f6` |
+| name to camelCase | `color.blue.500` | `ColorBlue500` |
+| name to kebab-case | `color.blue.500` | `color-blue-500` |
+
+Each `transformGroup` (e.g. `'css'`, `'js'`) is a preset bundle of these transforms.
+
+**Multi-platform output — one source, many targets:**
+
+```
+tokens/primitive.json + semantic.json + component.json
+                    ↓
+            Style Dictionary
+                    ↓
+┌──────────────────────────────────────────────────┐
+│ dist/tokens.css    CSS custom properties  (web)  │
+│ dist/index.js      JS named exports       (web)  │
+│ dist/tokens.swift  UIColor constants      (iOS)  │
+│ dist/tokens.xml    color resources      (Android)│
+└──────────────────────────────────────────────────┘
+```
+
+Axis DS only uses CSS + JS today, but the architecture supports adding iOS/Android output with no changes to the token source files.
+
+---
+
 ## Style Dictionary in CI/CD
 
 Style Dictionary is a **pure file transformer** — deterministic, no network, no side effects. Same input always produces identical output. Risk is the same as running `tsc`.
@@ -61,7 +109,7 @@ Style Dictionary is a **pure file transformer** — deterministic, no network, n
 | Commit output | Yes — CSS/JS in the repo | Reviewers see token diffs in PRs without running the build |
 | Build-only | No — gitignored, generated at CI | Cleaner repo, artifacts live in the pipeline |
 
-For Axis DS: **commit the output**. A PR that changes `--color-brand-primary` shows the exact before/after in the diff. That is the review.
+For Axis DS: **build-only** (gitignored). Token diffs are visible in the source JSON files — that's where the real change is. Generated CSS is noise in a PR.
 
 ### Where it sits in a pipeline
 
