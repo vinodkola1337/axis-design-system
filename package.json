@@ -1,0 +1,12 @@
+{
+  "name": "axis-design-system",
+  "private": true,
+  "packageManager": "pnpm@11.1.3",
+  "scripts": {
+    "tokens:build": "pnpm --filter @vinodkola/axis-tokens build",
+    "build": "pnpm run tokens:build && pnpm --filter @vinodkola/axis-ui build",
+    "dev": "pnpm --filter @vinodkola/axis-ui dev",
+    "storybook": "pnpm --filter @axis/docs storybook",
+    "storybook:build": "pnpm run tokens:build && pnpm --filter @vinodkola/axis-ui build && pnpm --filter @axis/docs build-storybook"
+  }
+}

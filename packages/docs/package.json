@@ -1,0 +1,18 @@
+{
+  "name": "@axis/docs",
+  "version": "0.0.1",
+  "private": true,
+  "scripts": {
+    "storybook": "storybook dev --port 6006",
+    "build-storybook": "storybook build"
+  },
+  "devDependencies": {
+    "@storybook/vue3": "^8.0.0",
+    "@storybook/vue3-vite": "^8.0.0",
+    "storybook": "^8.0.0"
+  },
+  "dependencies": {
+    "@vinodkola/axis-tokens": "workspace:*",
+    "@vinodkola/axis-ui": "workspace:*"
+  }
+}

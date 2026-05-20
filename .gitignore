@@ -1,0 +1,13 @@
+# Dependencies
+node_modules/
+
+# Build outputs
+dist/
+*.tsbuildinfo
+
+# Storybook
+storybook-static/
+
+# Misc
+.DS_Store
+*.local
