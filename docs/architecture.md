@@ -109,7 +109,7 @@ flowchart LR
     E -->|"installed by"| G
 ```
 
-Style Dictionary runs as a build step — locally on demand, and in CI on every push to `main`. The generated `dist/` files are committed so PR diffs show exactly what token values changed.
+Style Dictionary runs as a build step — locally on demand, and in CI on every push to `main`. The generated `dist/` is gitignored; token change diffs are visible in the source JSON files.
 
 ---
 
