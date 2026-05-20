@@ -26,3 +26,7 @@ Key decisions:
 ## Conventions
 
 _To be filled as the system is built._
+
+## Deferred Decisions
+
+- **Versioning** — `axis-tokens` and `axis-ui` use fixed synchronized versioning (always same version). Tool: `@changesets/cli`. Not set up yet — add before first npm publish. `@axis/docs` is private, no versioning needed.

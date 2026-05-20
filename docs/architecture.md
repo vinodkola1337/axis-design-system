@@ -62,8 +62,11 @@ axis-design-system/
 ├── packages/
 │   ├── tokens/                  ← @vinodkola/axis-tokens
 │   │   ├── package.json
-│   │   ├── tokens.json          ← source: all raw token definitions
 │   │   ├── style-dictionary.config.js
+│   │   ├── tokens/
+│   │   │   ├── primitive.json   ← raw values (colors, spacing, type scale)
+│   │   │   ├── semantic.json    ← purpose-mapped aliases (background, text, border)
+│   │   │   └── component.json  ← component-level tokens (button-height, input-radius)
 │   │   └── dist/
 │   │       ├── tokens.css       ← CSS custom properties (output)
 │   │       └── index.js         ← JS/TS exports (output)
@@ -248,6 +251,38 @@ pnpm --filter @vinodkola/axis-ui publish
 | Install command | `pnpm install` |
 
 Every branch gets a preview deployment URL automatically — useful for reviewing component changes before merging to `main`.
+
+---
+
+## Design Guidelines
+
+Axis DS follows **Material Design 3 (MD3)** as its primary design guideline reference. This is a *principles* decision, not a components decision — we don't use Google's Material components; we use MD3's documented thinking on color roles, elevation, motion, typography, and accessibility as the foundation for our own decisions.
+
+**Why MD3:**
+- The most detailed, publicly documented design system spec available
+- Color role model (`surface`, `on-surface`, `primary`, `on-primary`…) maps closely to the three-tier token model already in use
+- Covers accessibility, motion, and component behavior — areas most in-house systems leave undocumented
+
+**What we follow from MD3:**
+- Color role naming and relationships (adapted to our `color.background`, `color.surface`, `color.text` naming)
+- Elevation model — shadows and surface layering
+- Typography scale and role assignments (display, headline, body, label)
+- Component interaction states (hover, pressed, focused, disabled) and their token formulas
+- Accessibility contrast ratios (minimum 4.5:1 for text, 3:1 for UI elements)
+
+**What we diverge from:**
+- MD3 uses its own naming convention (`colorScheme.primary`, `colorScheme.onPrimary`); Axis uses a more readable noun-based naming (`color.interactive.primary`, `color.text.inverse`)
+- MD3 targets Material You / adaptive theming; Axis targets product design systems with explicit theme files
+
+**Alternatives considered:**
+
+| System | Strength | Why not primary reference |
+|---|---|---|
+| Material Design 3 | Most complete spec, color roles, motion | ✓ Chosen |
+| Apple HIG | Native Apple UX patterns | Web-focused, less applicable |
+| Fluent Design (Microsoft) | Enterprise, Windows ecosystem | Less community tooling |
+| Atlassian Design System | Practical enterprise patterns | Proprietary, product-specific |
+| Carbon (IBM) | Accessibility-first, data-heavy UIs | Data-product bias |
 
 ---
 

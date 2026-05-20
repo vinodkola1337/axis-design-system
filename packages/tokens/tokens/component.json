@@ -1,0 +1,21 @@
+{
+  "button": {
+    "height":         { "$value": "{spacing.10}",              "$type": "dimension" },
+    "padding-x":      { "$value": "{spacing.4}",               "$type": "dimension" },
+    "border-radius":  { "$value": "{border-radius.md}",        "$type": "dimension" },
+    "font-weight":    { "$value": "{font.weight.semibold}",    "$type": "fontWeight" },
+    "color-bg":       { "$value": "{color.interactive.primary}", "$type": "color" },
+    "color-bg-hover": { "$value": "{color.interactive.primary-hover}", "$type": "color" },
+    "color-text":     { "$value": "{color.text.inverse}",      "$type": "color" }
+  },
+  "input": {
+    "height":              { "$value": "{spacing.10}",             "$type": "dimension" },
+    "padding-x":           { "$value": "{spacing.3}",              "$type": "dimension" },
+    "border-radius":       { "$value": "{border-radius.md}",       "$type": "dimension" },
+    "border-color":        { "$value": "{color.border.default}",   "$type": "color" },
+    "border-color-focus":  { "$value": "{color.border.focus}",     "$type": "color" },
+    "color-bg":            { "$value": "{color.surface.default}",  "$type": "color" },
+    "color-text":          { "$value": "{color.text.primary}",     "$type": "color" },
+    "color-placeholder":   { "$value": "{color.text.placeholder}", "$type": "color" }
+  }
+}
