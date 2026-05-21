@@ -10,6 +10,12 @@ Token-driven, scalable UI system. Single source of truth for design and engineer
 - Style Dictionary (token transforms)
 - Tokens Studio (Figma plugin, token editing)
 
+## Project Spec
+
+Spec-driven progress tracker → `docs/spec.md`
+
+Read `docs/spec.md` at the start of any work session to understand current project state. Update it inline (`[ ]` → `[x]`) as phases complete. Do not scan the codebase to reconstruct progress — the spec is the source of truth.
+
 ## Architecture
 
 Full architecture with diagrams → `docs/architecture.md`
