@@ -28,7 +28,7 @@ flowchart TD
 
     subgraph PkgUI["packages/ui — @vinodkola/axis-ui"]
         TW["Tailwind v4"]
-        Scratch["From-scratch components<br/>Button, Input, Select, Checkbox"]
+        Scratch["From-scratch components<br/>Button, TextInput, Select, Checkbox"]
         PVU["PrimeVue unstyled<br/>Table, DatePicker, Dialog"]
         TW --> Scratch
         TW --> PVU
@@ -66,7 +66,7 @@ axis-design-system/
 │   │   ├── tokens/
 │   │   │   ├── primitive.json   ← raw values (colors, spacing, type scale)
 │   │   │   ├── semantic.json    ← purpose-mapped aliases (background, text, border)
-│   │   │   └── component.json  ← component-level tokens (button-height, input-radius)
+│   │   │   └── component.json  ← component-level tokens (button-height, text-input-radius)
 │   │   └── dist/
 │   │       ├── tokens.css       ← CSS custom properties (output)
 │   │       └── index.js         ← JS/TS exports (output)
@@ -76,7 +76,7 @@ axis-design-system/
 │   │   ├── vite.config.ts
 │   │   ├── tsconfig.json
 │   │   └── src/
-│   │       ├── components/      ← per-component folders (button, input, table, dialog...)
+│   │       ├── components/      ← per-component folders (button, text-input, table, dialog...)
 │   │       ├── styles/
 │   │       │   └── main.css     ← Tailwind v4 entry + @theme inline token mapping
 │   │       └── index.ts         ← barrel export (also imports main.css)
@@ -175,7 +175,7 @@ All components live in per-component folders under `src/components/` — no atom
 
 | From scratch | PrimeVue unstyled |
 |---|---|
-| Button, Input, Select, Checkbox, Radio, Switch, Textarea, Label | Table, DatePicker, Dialog, Dropdown, Toast, Tabs |
+| Button, TextInput, Select, Checkbox, Radio, Switch, Textarea, Label | Table, DatePicker, Dialog, Dropdown, Toast, Tabs |
 
 PrimeVue unstyled mode provides accessibility, keyboard navigation, and ARIA for complex components. Axis owns 100% of the visual layer for both groups.
 
@@ -215,11 +215,11 @@ Tailwind v4 uses CSS-first configuration — no `tailwind.config.js`. The integr
 
 ```ts
 // Named import — bundler tree-shakes unused components
-import { Button, Input } from '@vinodkola/axis-ui'
+import { Button, TextInput } from '@vinodkola/axis-ui'
 
 // Subpath import — explicit, zero risk of side-effect imports
 import Button from '@vinodkola/axis-ui/button'
-import Input from '@vinodkola/axis-ui/input'
+import TextInput from '@vinodkola/axis-ui/text-input'
 ```
 
 Subpath exports are defined in `packages/ui/package.json` under the `exports` field.
