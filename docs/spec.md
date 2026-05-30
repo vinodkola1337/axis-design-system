@@ -23,15 +23,15 @@ Update status inline as work completes: `[ ]` → `[x]`.
 ## Phase 2 — Atom Components (from scratch)
 
 - [x] `Button` — primary / secondary / ghost variants, sizes, disabled state; uses `--axis-button-*` tokens
-- [ ] `Input` — text input, label slot, error state; uses `--axis-input-*` tokens
-- [ ] `Label` — standalone label atom
+- [x] `TextInput` — text-like input, sizes, fluid mode, label prop / slot, float label, error state; uses `--axis-text-input-*` tokens
+- [ ] `Label` — standalone label atom; deferred while labels remain internal to form controls
 
 ---
 
 ## Phase 3 — Storybook
 
 - [ ] `packages/docs` wired — `@vinodkola/axis-tokens` and `@vinodkola/axis-ui` linked, `tokens.css` imported globally
-- [ ] Stories for Button, Input, Label (variants + states visible in browser)
+- [ ] Stories for Button and TextInput (variants + states visible in browser)
 
 ---
 

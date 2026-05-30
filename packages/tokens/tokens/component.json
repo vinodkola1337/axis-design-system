@@ -45,14 +45,51 @@
       "color-text":         { "$value": "{color.interactive.primary}",       "$type": "color" }
     }
   },
-  "input": {
-    "height":              { "$value": "{spacing.10}",             "$type": "dimension" },
-    "padding-x":           { "$value": "{spacing.3}",              "$type": "dimension" },
-    "border-radius":       { "$value": "{border-radius.md}",       "$type": "dimension" },
-    "border-color":        { "$value": "{color.border.default}",   "$type": "color" },
-    "border-color-focus":  { "$value": "{color.border.focus}",     "$type": "color" },
-    "color-bg":            { "$value": "{color.surface.default}",  "$type": "color" },
+  "label": {
+    "gap":                 { "$value": "{spacing.1}",              "$type": "dimension" },
     "color-text":          { "$value": "{color.text.primary}",     "$type": "color" },
-    "color-placeholder":   { "$value": "{color.text.placeholder}", "$type": "color" }
+    "color-disabled":      { "$value": "{color.text.disabled}",    "$type": "color" },
+    "color-required":      { "$value": "{color.feedback.error}",    "$type": "color" },
+    "font-size":           { "$value": "{font.size.sm}",           "$type": "dimension" },
+    "font-weight":         { "$value": "{font.weight.medium}",      "$type": "fontWeight" },
+    "line-height":         { "$value": "{font.line-height.tight}",  "$type": "number" }
+  },
+  "text-input": {
+    "gap":                 { "$value": "{spacing.1}",              "$type": "dimension" },
+    "border-radius":       { "$value": "{border-radius.md}",       "$type": "dimension" },
+    "border-width":        { "$value": "{border-width.1}",         "$type": "dimension" },
+    "border-color":        { "$value": "{color.border.default}",   "$type": "color" },
+    "border-color-hover":  { "$value": "{color.border.strong}",    "$type": "color" },
+    "border-color-focus":  { "$value": "{color.border.focus}",     "$type": "color" },
+    "border-color-error":  { "$value": "{color.feedback.error}",    "$type": "color" },
+    "color-bg":            { "$value": "{color.surface.default}",  "$type": "color" },
+    "color-bg-disabled":   { "$value": "{color.background.subtle}", "$type": "color" },
+    "color-text":          { "$value": "{color.text.primary}",     "$type": "color" },
+    "color-placeholder":   { "$value": "{color.text.placeholder}", "$type": "color" },
+    "color-error":         { "$value": "{color.feedback.error}",    "$type": "color" },
+    "color-disabled":      { "$value": "{color.text.disabled}",     "$type": "color" },
+    "error-font-size":     { "$value": "{font.size.sm}",           "$type": "dimension" },
+    "focus-ring-width":    { "$value": "{border-width.2}",         "$type": "dimension" },
+    "float-label-offset-y": { "$value": "{spacing.2}",             "$type": "dimension" },
+    "width-default":       { "$value": "245px",                    "$type": "dimension" },
+    "width-min":           { "$value": "88px",                     "$type": "dimension" },
+    "width-max":           { "$value": "488px",                    "$type": "dimension" },
+    "size": {
+      "sm": {
+        "height":          { "$value": "{spacing.8}",              "$type": "dimension" },
+        "padding-x":       { "$value": "{spacing.2}",              "$type": "dimension" },
+        "font-size":       { "$value": "{font.size.sm}",           "$type": "dimension" }
+      },
+      "md": {
+        "height":          { "$value": "{spacing.10}",             "$type": "dimension" },
+        "padding-x":       { "$value": "{spacing.3}",              "$type": "dimension" },
+        "font-size":       { "$value": "{font.size.base}",         "$type": "dimension" }
+      },
+      "lg": {
+        "height":          { "$value": "{spacing.12}",             "$type": "dimension" },
+        "padding-x":       { "$value": "{spacing.4}",              "$type": "dimension" },
+        "font-size":       { "$value": "{font.size.lg}",           "$type": "dimension" }
+      }
+    }
   }
 }

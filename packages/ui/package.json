@@ -14,6 +14,10 @@
       "import": "./dist/button.js",
       "types": "./dist/button.d.ts"
     },
+    "./text-input": {
+      "import": "./dist/text-input.js",
+      "types": "./dist/text-input.d.ts"
+    },
     "./style.css": "./dist/style.css"
   },
   "scripts": {

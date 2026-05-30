@@ -49,6 +49,15 @@ Token-driven, scalable UI system. Tokens are the single source of truth for desi
 - Public npm packages use the `@vinodkola` scope: `@vinodkola/axis-tokens` and `@vinodkola/axis-ui`.
 - `@axis/docs` is private and does not need publishing/versioning.
 
+## Design Guidance
+
+- Follow Material Design 3 principles for component behavior, layout, states, typography, accessibility, and adaptive design unless the repo documents an intentional Axis-specific divergence.
+- When making a design-system choice, briefly call out the design rationale to the user so they can learn the tradeoff, especially when Material guidance leaves room for interpretation.
+- Prefer adaptive, container-aware sizing over hardcoded dimensions or browser defaults. Components may fill their parent when that is the common Material-aligned behavior, but large-screen layouts should still be bounded by parent containers, max-widths, margins, or layout grids.
+- Expose layout-control props only when they represent a reusable design-system decision, such as `fluid` for filling the parent container. Keep the parent layout responsible for final page-level width constraints.
+- Prefer persistent, accessible labels and state communication. Presentation choices such as floating labels are valid when they preserve label availability and do not change unrelated layout behavior.
+- Component-specific example: text fields should generally be fluid by default in form contexts, while non-fluid text fields should use tokenized min/default/max widths rather than relying on the browser's native input width.
+
 ## Versioning
 
 - `axis-tokens` and `axis-ui` should use fixed synchronized versions.
