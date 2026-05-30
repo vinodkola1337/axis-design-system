@@ -7,9 +7,12 @@ export default defineConfig({
   plugins: [tailwindcss(), vue()],
   build: {
     lib: {
-      entry: fileURLToPath(new URL('src/index.ts', import.meta.url)),
+      entry: {
+        index: fileURLToPath(new URL('src/index.ts', import.meta.url)),
+        button: fileURLToPath(new URL('src/components/button/index.ts', import.meta.url)),
+      },
       formats: ['es'],
-      fileName: 'index',
+      fileName: (_format, entryName) => `${entryName}.js`,
     },
     rollupOptions: {
       external: ['vue'],

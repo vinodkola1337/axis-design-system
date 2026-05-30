@@ -44,6 +44,7 @@
       "500": { "$value": "#f59e0b", "$type": "color" },
       "600": { "$value": "#d97706", "$type": "color" }
     },
+    "transparent": { "$value": "transparent", "$type": "color" },
     "white": { "$value": "#ffffff", "$type": "color" },
     "black": { "$value": "#000000", "$type": "color" }
   },
@@ -107,5 +108,8 @@
     "1": { "$value": "1px", "$type": "dimension" },
     "2": { "$value": "2px", "$type": "dimension" },
     "4": { "$value": "4px", "$type": "dimension" }
+  },
+  "opacity": {
+    "50": { "$value": 0.5, "$type": "number" }
   }
 }

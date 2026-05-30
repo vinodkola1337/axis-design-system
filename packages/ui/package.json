@@ -10,10 +10,14 @@
       "import": "./dist/index.js",
       "types": "./dist/index.d.ts"
     },
+    "./button": {
+      "import": "./dist/button.js",
+      "types": "./dist/button.d.ts"
+    },
     "./style.css": "./dist/style.css"
   },
   "scripts": {
-    "build": "vite build",
+    "build": "vite build && vue-tsc --declaration --emitDeclarationOnly --outDir dist --noEmit false",
     "dev": "vite build --watch",
     "typecheck": "vue-tsc --noEmit"
   },

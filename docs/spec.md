@@ -15,14 +15,14 @@ Update status inline as work completes: `[ ]` → `[x]`.
 
 ## Phase 1 — UI Package Infrastructure
 
-- [x] `packages/ui` — Vite lib config (`vite.config.ts`), `tsconfig.json`, `src/` directory structure (flat `/components` + `index.ts` barrel)
+- [x] `packages/ui` — Vite lib config (`vite.config.ts`), `tsconfig.json`, `src/` directory structure (`/components/<component>` folders + `index.ts` barrel)
 - [x] Tailwind v4 installed and configured in `packages/ui`, consuming axis-tokens CSS custom properties via `@theme` directive
 
 ---
 
 ## Phase 2 — Atom Components (from scratch)
 
-- [ ] `Button` — primary / secondary / ghost variants, sizes, disabled state; uses `--axis-button-*` tokens
+- [x] `Button` — primary / secondary / ghost variants, sizes, disabled state; uses `--axis-button-*` tokens
 - [ ] `Input` — text input, label slot, error state; uses `--axis-input-*` tokens
 - [ ] `Label` — standalone label atom
 

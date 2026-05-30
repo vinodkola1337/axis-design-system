@@ -61,4 +61,5 @@ Token-driven, scalable UI system. Tokens are the single source of truth for desi
 - Keep changes scoped to the package or document relevant to the task.
 - Add or update tests and stories in proportion to the behavioral risk of the change.
 - Prefer tokenized styling and CSS variables over local one-off values.
+- Order Vue single-file component blocks as `<template>`, then `<script setup lang="ts">`, then `<style scoped>`.
 - Avoid unrelated refactors while implementing feature or migration work.

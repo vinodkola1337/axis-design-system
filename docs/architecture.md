@@ -76,7 +76,7 @@ axis-design-system/
 │   │   ├── vite.config.ts
 │   │   ├── tsconfig.json
 │   │   └── src/
-│   │       ├── components/      ← all components flat (Button, Input, Table, Dialog...)
+│   │       ├── components/      ← per-component folders (button, input, table, dialog...)
 │   │       ├── styles/
 │   │       │   └── main.css     ← Tailwind v4 entry + @theme inline token mapping
 │   │       └── index.ts         ← barrel export (also imports main.css)
@@ -171,7 +171,7 @@ Only **semantic tokens** are overridden per theme. Primitive tokens never change
 
 ## Component Strategy
 
-All components live flat in `src/components/` — no atomic hierarchy. Components are grouped by authorship strategy, not folder:
+All components live in per-component folders under `src/components/` — no atomic hierarchy. Components are grouped by public component name, with each folder owning its Vue implementation, local exports, and future component-specific files.
 
 | From scratch | PrimeVue unstyled |
 |---|---|
@@ -179,7 +179,7 @@ All components live flat in `src/components/` — no atomic hierarchy. Component
 
 PrimeVue unstyled mode provides accessibility, keyboard navigation, and ARIA for complex components. Axis owns 100% of the visual layer for both groups.
 
-**Decision:** Flat structure was chosen over atomic (atoms/molecules/organisms) because the atom/molecule boundary is subjective and causes maintenance friction as a system grows. Consumers look for components by name, not composition depth.
+**Decision:** Per-component folders were chosen over atomic (atoms/molecules/organisms) because the atom/molecule boundary is subjective and causes maintenance friction as a system grows. Consumers look for components by name, not composition depth.
 
 ---
 

@@ -37,5 +37,8 @@
       "warning":        { "$value": "{color.amber.500}", "$type": "color" },
       "warning-subtle": { "$value": "{color.amber.50}",  "$type": "color" }
     }
+  },
+  "opacity": {
+    "disabled": { "$value": "{opacity.50}", "$type": "number" }
   }
 }
