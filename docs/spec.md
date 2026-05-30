@@ -15,8 +15,8 @@ Update status inline as work completes: `[ ]` → `[x]`.
 
 ## Phase 1 — UI Package Infrastructure
 
-- [ ] `packages/ui` — Vite lib config (`vite.config.ts`), `tsconfig.json`, `src/` directory structure (atoms / molecules / organisms / index.ts barrel)
-- [ ] Tailwind v4 installed and configured in `packages/ui`, consuming axis-tokens CSS custom properties via `@theme` directive
+- [x] `packages/ui` — Vite lib config (`vite.config.ts`), `tsconfig.json`, `src/` directory structure (flat `/components` + `index.ts` barrel)
+- [x] Tailwind v4 installed and configured in `packages/ui`, consuming axis-tokens CSS custom properties via `@theme` directive
 
 ---
 

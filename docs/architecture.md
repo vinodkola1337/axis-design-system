@@ -74,13 +74,12 @@ axis-design-system/
 │   ├── ui/                      ← @vinodkola/axis-ui
 │   │   ├── package.json
 │   │   ├── vite.config.ts
+│   │   ├── tsconfig.json
 │   │   └── src/
-│   │       ├── components/
-│   │       │   ├── atoms/       ← from scratch (Button, Input, Label...)
-│   │       │   ├── molecules/   ← compositions (FormField, SearchBar...)
-│   │       │   └── organisms/   ← PrimeVue unstyled (Table, Dialog, DatePicker...)
-│   │       ├── composables/     ← shared logic (useTheme, useColorMode...)
-│   │       └── index.ts         ← barrel export
+│   │       ├── components/      ← all components flat (Button, Input, Table, Dialog...)
+│   │       ├── styles/
+│   │       │   └── main.css     ← Tailwind v4 entry + @theme inline token mapping
+│   │       └── index.ts         ← barrel export (also imports main.css)
 │   │
 │   └── docs/                    ← @axis/docs
 │       ├── package.json
@@ -172,33 +171,41 @@ Only **semantic tokens** are overridden per theme. Primitive tokens never change
 
 ## Component Strategy
 
-```mermaid
-flowchart TD
-    subgraph Scratch["Built from scratch"]
-        B["Button"]
-        I["Input"]
-        SEL["Select"]
-        CB["Checkbox"]
-        RB["Radio"]
-        SW["Switch"]
-        TA["Textarea"]
-        LB["Label"]
-    end
+All components live flat in `src/components/` — no atomic hierarchy. Components are grouped by authorship strategy, not folder:
 
-    subgraph PVU["PrimeVue unstyled mode"]
-        DT["DataTable"]
-        DP["DatePicker"]
-        DLG["Dialog / Modal"]
-        DD["Dropdown / Menu"]
-        TOAST["Toast"]
-        TABS["Tabs"]
-    end
+| From scratch | PrimeVue unstyled |
+|---|---|
+| Button, Input, Select, Checkbox, Radio, Switch, Textarea, Label | Table, DatePicker, Dialog, Dropdown, Toast, Tabs |
 
-    Scratch -->|"100% custom styling, full token control"| UI["@vinodkola/axis-ui"]
-    PVU -->|"PrimeVue: accessibility + behaviour. Axis: all styling"| UI
+PrimeVue unstyled mode provides accessibility, keyboard navigation, and ARIA for complex components. Axis owns 100% of the visual layer for both groups.
+
+**Decision:** Flat structure was chosen over atomic (atoms/molecules/organisms) because the atom/molecule boundary is subjective and causes maintenance friction as a system grows. Consumers look for components by name, not composition depth.
+
+---
+
+## Tailwind v4 + Token Integration
+
+Tailwind v4 uses CSS-first configuration — no `tailwind.config.js`. The integration with axis-tokens is done in `src/styles/main.css` via two directives:
+
+```css
+@theme {
+  --color-*: initial;       /* reset Tailwind's default color palette */
+}
+
+@theme inline {
+  --color-interactive: var(--axis-color-interactive-primary);
+  --color-text: var(--axis-color-text-primary);
+  /* ... all semantic tokens mapped */
+}
 ```
 
-PrimeVue unstyled mode gives accessibility, keyboard navigation, and ARIA for complex components for free. Axis owns 100% of the visual layer for both categories.
+**`@theme` (without `inline`)** — resets Tailwind's built-in colors. This enforces that developers can only use axis semantic token names as utility classes (`bg-interactive`, `text-text-secondary`), not Tailwind's default palette (`bg-blue-500`).
+
+**`@theme inline`** — maps axis CSS vars to Tailwind's utility namespace without resolving the values at build time. The `var()` references are kept as-is in the output. At runtime the browser resolves them against whatever `tokens.css` defines on `:root`.
+
+**CSS output split:** `dist/style.css` (built by Vite) contains Tailwind utilities. `dist/tokens.css` (from packages/tokens) contains the CSS custom property values. Consumers must import both — the UI CSS depends on the token vars being present in the document.
+
+**Tree-shaking:** Tailwind v4 only emits a utility class if it's actually used in the source files scanned by the Vite plugin. An unused `bg-error` never appears in the output bundle.
 
 ---
 
@@ -293,11 +300,14 @@ Axis DS follows **Material Design 3 (MD3)** as its primary design guideline refe
 // pnpm add @vinodkola/axis-tokens @vinodkola/axis-ui
 
 // In app entry (main.ts)
-import '@vinodkola/axis-tokens/dist/tokens.css'   // load all CSS custom properties
+import '@vinodkola/axis-tokens/dist/tokens.css'   // 1. CSS custom property values (:root)
+import '@vinodkola/axis-ui/style.css'             // 2. Tailwind utilities + component styles
 
 // Per component
 import { Button } from '@vinodkola/axis-ui'
 ```
+
+Order matters: tokens.css must load first. The UI style.css references `var(--axis-*)` — those vars must be defined before the utilities are applied.
 
 For multi-theme consumers: load the appropriate theme override file after the base tokens.
 
