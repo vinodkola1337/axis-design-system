@@ -24,7 +24,7 @@ Update status inline as work completes: `[ ]` → `[x]`.
 
 - [x] `Button` — primary / secondary / ghost variants, sizes, disabled state; uses `--axis-button-*` tokens
 - [x] `TextInput` — text-like input, sizes, fluid mode, label prop / slot, float label, error state; uses `--axis-text-input-*` tokens
-- [ ] `Label` — standalone label atom; deferred while labels remain internal to form controls
+- [x] `Label` — standalone label atom; required / disabled states; uses `--axis-label-*` tokens
 
 ---
 

@@ -10,6 +10,7 @@ export default defineConfig({
       entry: {
         index: fileURLToPath(new URL('src/index.ts', import.meta.url)),
         button: fileURLToPath(new URL('src/components/button/index.ts', import.meta.url)),
+        label: fileURLToPath(new URL('src/components/label/index.ts', import.meta.url)),
         'text-input': fileURLToPath(new URL('src/components/text-input/index.ts', import.meta.url)),
       },
       formats: ['es'],
