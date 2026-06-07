@@ -35,7 +35,7 @@ flowchart TD
     end
 
     subgraph PkgDocs["packages/docs — @axis/docs"]
-        SB["Storybook 8"]
+        SB["Storybook 10"]
     end
 
     subgraph Consumers["Consuming Applications"]
@@ -180,6 +180,26 @@ All components live in per-component folders under `src/components/` — no atom
 PrimeVue unstyled mode provides accessibility, keyboard navigation, and ARIA for complex components. Axis owns 100% of the visual layer for both groups.
 
 **Decision:** Per-component folders were chosen over atomic (atoms/molecules/organisms) because the atom/molecule boundary is subjective and causes maintenance friction as a system grows. Consumers look for components by name, not composition depth.
+
+---
+
+## Component CSS Class Naming
+
+Axis component styles use a BEM-style class naming convention with an `axis-` namespace:
+
+```css
+.axis-text-input {}
+.axis-text-input__control {}
+.axis-text-input--invalid {}
+```
+
+- **Block:** the standalone component root, such as `axis-text-input`.
+- **Element:** an internal part of the component, separated with `__`, such as `axis-text-input__control`.
+- **Modifier:** a variant or state, separated with `--`, such as `axis-text-input--invalid`, `axis-text-input--fluid`, or `axis-text-input--sm`.
+
+This keeps component CSS readable, scoped by convention, and predictable without relying on vague global names like `.input`, `.error`, or `.large`. The `axis-` prefix avoids collisions with consumer application styles.
+
+This convention is separate from CSS custom properties. Token variables such as `--axis-text-input-color-bg` also start with `--`, but that is required CSS syntax for custom properties, not BEM.
 
 ---
 
