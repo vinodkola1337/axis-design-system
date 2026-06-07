@@ -30,7 +30,7 @@ Update status inline as work completes: `[ ]` → `[x]`.
 
 ## Phase 3 — Storybook
 
-- [x] `packages/docs` wired — `@vinodkola/axis-tokens` and `@vinodkola/axis-ui` linked, `tokens.css` imported globally
+- [x] `packages/docs` wired — token CSS imported globally, UI stories colocated with component source and discovered by Storybook
 - [x] Stories for Button and TextInput (variants + states visible in browser)
 - [x] Upgrade to Storybook 10 and configure Docs plus core Controls, Actions, and viewport testing
 - [ ] Establish a reusable component documentation template covering overview, usage guidance, anatomy, variants, states, accessibility, API/props, and examples

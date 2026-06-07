@@ -1,5 +1,5 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
-import { TextInput } from '@vinodkola/axis-ui'
+import TextInput from './TextInput.vue'
 
 const meta = {
   title: 'Components/TextInput',

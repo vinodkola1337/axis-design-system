@@ -268,12 +268,14 @@ pnpm --filter @vinodkola/axis-ui publish
 
 ### Vercel — Storybook
 
-`packages/docs` builds to a static site and is hosted on Vercel's free plan. Since Storybook depends on `@vinodkola/axis-ui` and `@vinodkola/axis-tokens` being built first, Vercel runs from the repo root.
+`packages/docs` builds to a static site and is hosted on Vercel's free plan. Storybook consumes UI component and global CSS source directly, while `@vinodkola/axis-tokens` must be built first because its generated CSS variables are imported by the preview.
+
+Component stories are colocated with their Vue components under `packages/ui/src/components`, while `packages/docs` remains the private Storybook host. Stories import local `.vue` source directly for reliable docgen, and the docs Vite config processes the UI package's source-level global CSS with the same Vue and Tailwind plugins used by the library.
 
 | Setting | Value |
 |---|---|
 | Root directory | `/` |
-| Build command | `pnpm run tokens:build && pnpm --filter @vinodkola/axis-ui build && pnpm --filter @axis/docs build-storybook` |
+| Build command | `pnpm run storybook:build` |
 | Output directory | `packages/docs/storybook-static` |
 | Install command | `pnpm install` |
 
