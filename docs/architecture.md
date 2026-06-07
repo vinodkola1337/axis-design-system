@@ -183,6 +183,14 @@ PrimeVue unstyled mode provides accessibility, keyboard navigation, and ARIA for
 
 ---
 
+## Icon Strategy
+
+Axis uses `@lucide/vue` as the standard product icon library. Lucide owns the SVG paths; Axis owns presentation through tokens. Icons should inherit `currentColor` by default and use semantic or component tokens for color, size, spacing, and state treatment.
+
+PrimeIcons remains acceptable for PrimeVue-backed internals when a Prime component expects it, but product-facing Axis documentation and examples should prefer Lucide for visual consistency and SVG-level control.
+
+---
+
 ## Component CSS Class Naming
 
 Axis component styles use a BEM-style class naming convention with an `axis-` namespace:
