@@ -1,0 +1,98 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks'
+import * as Stories from './Button.stories'
+
+<Meta of={Stories} />
+
+# Button
+
+## Overview
+
+Button communicates an action that a user can take and gives that action an appropriate level of emphasis.
+
+<Canvas of={Stories.Primary} />
+
+## Usage
+
+- **Label actions clearly:** Use concise, action-oriented text in sentence case, such as "Save changes". Avoid unnecessary words and punctuation.
+- **Establish a clear hierarchy:** Use filled emphasis for the main next step and reduce emphasis for supporting actions.
+- **Position actions consistently:** Keep recurring actions in predictable locations across related screens and workflows.
+- **Use the correct element:** Use buttons for actions in the current context and links for navigation to another destination.
+
+| Use | Avoid |
+|---|---|
+| Use a specific label such as "Save changes". | Avoid vague labels such as "Click here" or "Submit". |
+| Use one filled button for the main next step in a focused area. | Avoid placing multiple filled buttons together. |
+| Use danger severity for destructive actions. | Avoid using severity only to add visual variety. |
+
+## Variants
+
+### Emphasis
+
+The `emphasis` prop controls the button's visual prominence.
+
+<Canvas of={Stories.Emphases} />
+
+| Emphasis | Use when |
+|---|---|
+| Filled | The action is the main next step in a focused area. |
+| Outlined | The action supports the main action and still needs clear affordance. |
+| Text | The action should remain available with minimal visual weight. |
+
+### Severity
+
+The `severity` prop defines the button's action intent.
+
+<Canvas of={Stories.Severities} />
+
+| Severity | Use when |
+|---|---|
+| Primary | The action is a standard, non-destructive action. |
+| Danger | The action is destructive or difficult to reverse. |
+
+### Sizes
+
+The `size` prop controls the button's dimensions and label size.
+
+<Canvas of={Stories.Sizes} />
+
+| Size | Use when |
+|---|---|
+| Small | Space is constrained, such as in compact toolbars or dense interfaces. |
+| Medium | The button appears in standard forms, dialogs, and page actions. |
+| Large | The action needs a larger touch target or stronger prominence in a spacious layout. |
+
+### Disabled
+
+The `disabled` prop makes the button unavailable for interaction.
+
+<Canvas of={Stories.Disabled} />
+
+## API
+
+<ArgTypes />
+
+The default slot supplies the visible button label. Native attributes and listeners, including `aria-*` attributes and `click`, fall through to the underlying `<button>`.
+
+## Accessibility
+
+### Screen Reader
+
+Use visible text that clearly names the action. For an icon-only button, provide an accessible name with `aria-label`; do not rely on the icon alone.
+
+```vue
+<Button aria-label="Close dialog">
+  <CloseIcon aria-hidden="true" />
+</Button>
+```
+
+The native `disabled` attribute communicates the unavailable state to assistive technology and prevents activation.
+
+### Keyboard Support
+
+| Key | Function |
+|---|---|
+| `Tab` | Moves focus to the button. |
+| `Enter` | Activates the focused button. |
+| `Space` | Activates the focused button. |
+
+Button uses the native HTML `<button>` element, so standard focus and activation behavior is provided by the browser. Keep `type="button"` for non-submit actions inside forms; use `type="submit"` only when the button submits the form.

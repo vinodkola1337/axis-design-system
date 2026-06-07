@@ -31,6 +31,8 @@
     },
     "feedback": {
       "error":          { "$value": "{color.red.500}",   "$type": "color" },
+      "error-hover":    { "$value": "{color.red.700}",   "$type": "color" },
+      "error-active":   { "$value": "{color.red.800}",   "$type": "color" },
       "error-subtle":   { "$value": "{color.red.50}",    "$type": "color" },
       "success":        { "$value": "{color.green.500}", "$type": "color" },
       "success-subtle": { "$value": "{color.green.50}",  "$type": "color" },

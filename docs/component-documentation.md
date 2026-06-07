@@ -9,11 +9,10 @@ Start from `packages/ui/src/components/.template.mdx`, copy it into the componen
 Use these sections in this order:
 
 1. Overview
-2. Simple Example
-3. Usage
-4. Variants
-5. API
-6. Accessibility
+2. Usage
+3. Variants
+4. API
+5. Accessibility
 
 Add a specialized section only when the component genuinely needs it. Keep guidance concise and focused on design decisions rather than documenting every implementation state.
 
@@ -24,7 +23,9 @@ Add a specialized section only when the component genuinely needs it. Keep guida
 - Remove `autodocs` from the story metadata after adding a custom MDX page. This prevents duplicate Docs entries.
 - Keep individual stories in the sidebar for development.
 - Add grouped documentation stories for option families such as variants, sizes, and states. Embed those grouped stories in the Docs page instead of rendering every option in a separate Canvas.
+- Add `tags: ['!dev']` to grouped documentation stories so they remain available to MDX but do not appear as standalone sidebar entries.
 - Use Storybook Doc Blocks so examples remain interactive and API tables remain generated from Vue metadata.
+- Do not document Vue framework attributes such as `key`, `ref`, `ref_for`, or `ref_key` as component props. Generic `class` and `style` fall through to component roots but are also excluded globally because they are not component-owned API.
 
 ## Overview
 
@@ -34,9 +35,9 @@ Example:
 
 > Button communicates an action that a user can take and gives that action an appropriate level of emphasis.
 
-## Simple Example
+## Common Example
 
-Show one interactive `Canvas` using the most common configuration. The example should help a reader understand the component before they encounter detailed options.
+Immediately after the Overview paragraph, show one interactive `Canvas` using the most common configuration. Do not add a heading for this example. It should help a reader understand the component before they encounter detailed options.
 
 ```mdx
 <Canvas of={Stories.Primary} />
@@ -44,31 +45,54 @@ Show one interactive `Canvas` using the most common configuration. The example s
 
 ## Usage
 
-Provide one high-level, two-column **Use / Avoid** table with two to five guidelines. Translate relevant Material Design principles into concise Axis-specific guidance rather than quoting Material documentation.
+Start with three to five short best-practice bullets for broad principles. Place them directly under Usage without an additional heading. Use a bold lead-in so each recommendation is easy to scan, followed by one or two sentences of explanation.
 
+Follow the bullets with a compact, two-column **Use / Avoid** table containing two or three concrete comparisons. Do not repeat every bullet in the table. Bullets explain principles; the table contrasts specific good and bad examples.
+
+Translate relevant Material Design principles into concise Axis-specific guidance rather than quoting Material documentation.
+
+```mdx
+- **Label actions clearly:** Use concise, action-oriented text in sentence case.
+- **Establish a clear hierarchy:** Reserve the highest emphasis for the main next step.
+```
+
+The docs host enables GitHub-Flavored Markdown through `remark-gfm`, so use concise pipe tables in component MDX:
+
+```mdx
 | Use | Avoid |
 |---|---|
 | Use a clear, action-oriented label. | Avoid vague labels such as "Click here." |
-| Use one primary action in a focused area. | Avoid giving several nearby actions equal emphasis. |
+```
 
 ## Variants
 
-Group related options in one comparison Canvas, followed by a compact decision table.
+Group related options in one comparison Canvas, followed by a compact decision table. Introduce each option family with one sentence naming the prop that controls it and explaining what the prop changes.
 
 ```mdx
-<Canvas of={Stories.Variants} />
+### Emphasis
+
+The `emphasis` prop controls the button's visual prominence.
+
+<Canvas of={Stories.Emphases} />
+
+| Emphasis | Use when |
+|---|---|
+| Filled | The action is the main next step in a focused area. |
+| Outlined | The action supports the main action and still needs clear affordance. |
 ```
 
-| Variant | Use when |
-|---|---|
-| Primary | The action is the main next step. |
-| Secondary | The action supports the primary action. |
-| Ghost | The action needs low visual emphasis. |
-| Danger | The action is destructive or difficult to reverse. |
+Give each option family a descriptive `h3` heading, such as Severity, Sizes, or States. Use one grouped Canvas and one decision table per option family. Document disabled under Variants when the component supports it, with a one-line prop description and a disabled Canvas. Although disabled is an interaction state rather than a visual style variant, keeping it here makes the component's available configurations easier to discover.
 
-Use one grouped Canvas per option family, such as variants, sizes, or states. Add a one-sentence recommendation only when an option represents a meaningful design decision. Self-explanatory implementation states do not need separate guidance.
+Grouped comparison stories are documentation helpers rather than isolated component states. Hide them from the development sidebar with the built-in `!dev` tag:
 
-The `danger` row above is a documentation example, not part of the Button API until that variant is implemented.
+```ts
+export const Severities: Story = {
+  tags: ['!dev'],
+  render: () => ({
+    // Render the grouped comparison used by the MDX Canvas.
+  }),
+}
+```
 
 ## API
 

@@ -274,13 +274,21 @@ Component stories are colocated with their Vue components under `packages/ui/src
 
 Storybook Docs uses the native `docs.toc` parameter from `@storybook/addon-docs` for page navigation. The global preview includes `h2` and `h3` headings so component documentation sections and subsections appear without adding a third-party TOC addon. Individual component metadata may disable or refine the TOC for exceptional pages.
 
-Component documentation uses colocated MDX pages in this standard order: Overview, Simple Example, Usage, Variants, API, and Accessibility. The Docs page is the complete component guideline, so there is no separate Guidelines section. Usage contains one concise Use/Avoid table, while related variants, sizes, or states are shown together in comparison stories rather than one Docs Canvas per option.
+Component documentation uses colocated MDX pages in this standard order: Overview, Usage, Variants, API, and Accessibility. One common interactive example appears directly after the Overview paragraph without its own heading. The Docs page is the complete component guideline, so there is no separate Guidelines section. Usage combines concise best-practice bullets with a short Use/Avoid table, while related variants, sizes, or states are shown together in comparison stories rather than one Docs Canvas per option. Each option family includes a one-line description of its controlling prop and a compact decision table, and supported disabled states are documented under Variants for discoverability. Grouped comparison stories use Storybook's `!dev` tag so they remain available to MDX without appearing as standalone development stories in the sidebar.
+
+Button separates visual hierarchy from action intent. The `emphasis` prop controls prominence (`filled`, `outlined`, or `text`), while the `severity` prop controls intent (`primary` or `danger`). This keeps supporting actions such as Back or Cancel as lower-emphasis buttons rather than treating them as separate semantic severities.
 
 Custom MDX pages attach to colocated story metadata with Storybook's `Meta` block. Individual stories remain available in the sidebar for development, but Docs pages embed only the common example and grouped stories that help consumers make design decisions. Once a custom MDX page exists, its story metadata must remove the `autodocs` tag to prevent duplicate Docs entries.
+
+Storybook globally excludes Vue framework metadata (`key`, `ref`, `ref_for`, and `ref_key`) plus generic `class` and `style` fallthrough attributes from Controls and generated ArgTypes tables. These values are not component-owned public API; native attribute fallthrough is described in prose where relevant.
 
 API tables use Storybook Doc Blocks and Vue metadata so props, slots, and emitted events are not duplicated manually. Accessibility always covers screen-reader behavior and keyboard support. Component-level version history is excluded; release history belongs in the future package changelog and standalone Release Notes page.
 
 Because MDX files live in `packages/ui` while Storybook dependencies live in private `packages/docs`, the docs Vite config resolves the Doc Blocks entrypoint from the host package. It also normalizes Storybook's generated `file://` MDX imports on Windows. This preserves package boundaries without adding Storybook runtime dependencies to the published UI package.
+
+The docs host enables `remark-gfm` through Storybook's MDX compile options. Component authors can use concise GitHub-Flavored Markdown tables instead of verbose HTML table markup.
+
+Storybook preview styles make documentation tables fill the available Docs content width. This keeps comparison and guidance tables visually consistent regardless of their text length.
 
 | Setting | Value |
 |---|---|

@@ -43,7 +43,8 @@
     "vue-tsc": "^2.0.0"
   },
   "dependencies": {
-    "@vinodkola/axis-tokens": "workspace:*"
+    "@vinodkola/axis-tokens": "workspace:*",
+    "lucide-vue-next": "^1.0.0"
   },
   "publishConfig": {
     "access": "public"

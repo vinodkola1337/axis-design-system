@@ -11,27 +11,37 @@ import * as Stories from './ComponentName.stories'
 
 Write one short paragraph describing the component's purpose.
 
-## Simple Example
-
 <Canvas of={Stories.Primary} />
 
 ## Usage
 
+- **State the principle clearly:** Add three to five concise recommendations that help consumers make design decisions.
+- **Explain the reason:** Connect guidance to user outcomes, hierarchy, consistency, or accessibility.
+- **Keep implementation details elsewhere:** Reserve this section for usage decisions rather than prop definitions.
+
 | Use | Avoid |
 |---|---|
-| Add two to five high-level usage guidelines. | Add the corresponding misuse to avoid. |
-| Keep guidance focused on user and design decisions. | Repeat prop definitions or self-explanatory states. |
+| Add two or three concrete examples of correct use. | Add the corresponding misuse to avoid. |
+| Keep comparisons short and directly related. | Repeat every best-practice bullet in table form. |
 
 ## Variants
 
-<Canvas of={Stories.Variants} />
+### Option Family
 
-| Variant | Use when |
+Add a one-line description naming the prop that controls this option family and what it changes.
+
+<Canvas of={Stories.Options} />
+
+| Option | Use when |
 |---|---|
-| Primary | The action is the main next step. |
-| Secondary | The action supports the primary action. |
-| Ghost | The action needs low visual emphasis. |
-| Danger | The action is destructive or difficult to reverse. |
+| Option one | Add a concise description of when to use it. |
+| Option two | Add a concise description of when to use it. |
+
+### Disabled
+
+Name the prop that controls the disabled state and briefly explain its effect.
+
+<Canvas of={Stories.Disabled} />
 
 ## API
 

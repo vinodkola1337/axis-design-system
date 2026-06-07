@@ -13,13 +13,15 @@ defineOptions({
  
 const props = withDefaults(
   defineProps<{
-    variant?: 'primary' | 'secondary' | 'ghost'
+    emphasis?: 'filled' | 'outlined' | 'text'
+    severity?: 'primary' | 'danger'
     size?: 'sm' | 'md' | 'lg'
     disabled?: boolean
     type?: 'button' | 'submit' | 'reset'
   }>(),
   {
-    variant: 'primary',
+    emphasis: 'filled',
+    severity: 'primary',
     size: 'md',
     disabled: false,
     type: 'button',
@@ -28,7 +30,8 @@ const props = withDefaults(
 
 const classes = computed(() => [
   'axis-button',
-  `axis-button--${props.variant}`,
+  `axis-button--${props.emphasis}`,
+  `axis-button--${props.severity}`,
   `axis-button--${props.size}`,
 ])
 </script>
@@ -37,12 +40,12 @@ const classes = computed(() => [
 .axis-button {
   align-items: center;
   appearance: none;
-  background: var(--axis-button-primary-color-bg);
-  border-color: var(--axis-button-primary-color-border);
+  background: var(--axis-button-emphasis-filled-primary-color-bg);
+  border-color: var(--axis-button-emphasis-filled-primary-color-border);
   border-radius: var(--axis-button-border-radius);
   border-style: solid;
   border-width: var(--axis-button-border-width);
-  color: var(--axis-button-primary-color-text);
+  color: var(--axis-button-emphasis-filled-primary-color-text);
   cursor: pointer;
   display: inline-flex;
   font-family: var(--axis-font-family-sans);
@@ -65,11 +68,11 @@ const classes = computed(() => [
 }
 
 .axis-button:hover:not(:disabled) {
-  background: var(--axis-button-primary-color-bg-hover);
+  background: var(--axis-button-emphasis-filled-primary-color-bg-hover);
 }
 
 .axis-button:active:not(:disabled) {
-  background: var(--axis-button-primary-color-bg-active);
+  background: var(--axis-button-emphasis-filled-primary-color-bg-active);
 }
 
 .axis-button:focus-visible {
@@ -82,32 +85,74 @@ const classes = computed(() => [
   opacity: var(--axis-button-disabled-opacity);
 }
 
-.axis-button--secondary {
-  background: var(--axis-button-secondary-color-bg);
-  border-color: var(--axis-button-secondary-color-border);
-  color: var(--axis-button-secondary-color-text);
+.axis-button--danger {
+  background: var(--axis-button-emphasis-filled-danger-color-bg);
+  border-color: var(--axis-button-emphasis-filled-danger-color-border);
+  color: var(--axis-button-emphasis-filled-danger-color-text);
 }
 
-.axis-button--secondary:hover:not(:disabled) {
-  background: var(--axis-button-secondary-color-bg-hover);
+.axis-button--danger:hover:not(:disabled) {
+  background: var(--axis-button-emphasis-filled-danger-color-bg-hover);
 }
 
-.axis-button--secondary:active:not(:disabled) {
-  background: var(--axis-button-secondary-color-bg-active);
+.axis-button--danger:active:not(:disabled) {
+  background: var(--axis-button-emphasis-filled-danger-color-bg-active);
 }
 
-.axis-button--ghost {
-  background: var(--axis-button-ghost-color-bg);
-  border-color: var(--axis-button-ghost-color-border);
-  color: var(--axis-button-ghost-color-text);
+.axis-button--outlined {
+  background: var(--axis-button-emphasis-outlined-primary-color-bg);
+  border-color: var(--axis-button-emphasis-outlined-primary-color-border);
+  color: var(--axis-button-emphasis-outlined-primary-color-text);
 }
 
-.axis-button--ghost:hover:not(:disabled) {
-  background: var(--axis-button-ghost-color-bg-hover);
+.axis-button--outlined:hover:not(:disabled) {
+  background: var(--axis-button-emphasis-outlined-primary-color-bg-hover);
 }
 
-.axis-button--ghost:active:not(:disabled) {
-  background: var(--axis-button-ghost-color-bg-active);
+.axis-button--outlined:active:not(:disabled) {
+  background: var(--axis-button-emphasis-outlined-primary-color-bg-active);
+}
+
+.axis-button--text {
+  background: var(--axis-button-emphasis-text-primary-color-bg);
+  border-color: var(--axis-button-emphasis-text-primary-color-border);
+  color: var(--axis-button-emphasis-text-primary-color-text);
+}
+
+.axis-button--text:hover:not(:disabled) {
+  background: var(--axis-button-emphasis-text-primary-color-bg-hover);
+}
+
+.axis-button--text:active:not(:disabled) {
+  background: var(--axis-button-emphasis-text-primary-color-bg-active);
+}
+
+.axis-button--outlined.axis-button--danger {
+  background: var(--axis-button-emphasis-outlined-danger-color-bg);
+  border-color: var(--axis-button-emphasis-outlined-danger-color-border);
+  color: var(--axis-button-emphasis-outlined-danger-color-text);
+}
+
+.axis-button--outlined.axis-button--danger:hover:not(:disabled) {
+  background: var(--axis-button-emphasis-outlined-danger-color-bg-hover);
+}
+
+.axis-button--outlined.axis-button--danger:active:not(:disabled) {
+  background: var(--axis-button-emphasis-outlined-danger-color-bg-active);
+}
+
+.axis-button--text.axis-button--danger {
+  background: var(--axis-button-emphasis-text-danger-color-bg);
+  border-color: var(--axis-button-emphasis-text-danger-color-border);
+  color: var(--axis-button-emphasis-text-danger-color-text);
+}
+
+.axis-button--text.axis-button--danger:hover:not(:disabled) {
+  background: var(--axis-button-emphasis-text-danger-color-bg-hover);
+}
+
+.axis-button--text.axis-button--danger:active:not(:disabled) {
+  background: var(--axis-button-emphasis-text-danger-color-bg-active);
 }
 
 .axis-button--sm {

@@ -1,6 +1,9 @@
 import type { Preview } from '@storybook/vue3-vite'
 import '@vinodkola/axis-tokens/dist/tokens.css'
 import '../../ui/src/styles/main.css'
+import './preview.css'
+
+const vueFrameworkArgTypes = ['key', 'ref', 'ref_for', 'ref_key', 'class', 'style']
 
 const preview: Preview = {
   parameters: {
@@ -9,6 +12,7 @@ const preview: Preview = {
     },
     controls: {
       disableSaveFromUI: true,
+      exclude: vueFrameworkArgTypes,
       expanded: true,
       matchers: {
         color: /(background|color)$/i,
@@ -17,6 +21,9 @@ const preview: Preview = {
       sort: 'requiredFirst',
     },
     docs: {
+      argTypes: {
+        exclude: vueFrameworkArgTypes,
+      },
       source: {
         type: 'dynamic',
       },
