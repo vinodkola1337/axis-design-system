@@ -49,6 +49,19 @@ export const Ghost: Story = {
   },
 }
 
+export const Variants: Story = {
+  render: () => ({
+    components: { Button },
+    template: `
+      <div style="display: flex; align-items: center; gap: var(--axis-spacing-4);">
+        <Button variant="primary">Primary</Button>
+        <Button variant="secondary">Secondary</Button>
+        <Button variant="ghost">Ghost</Button>
+      </div>
+    `,
+  }),
+}
+
 export const Sizes: Story = {
   render: () => ({
     components: { Button },

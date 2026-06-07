@@ -81,6 +81,9 @@
 - **`docs`**: Configures globally generated Storybook documentation.
 - **`docs.source`**: Configures the source-code block shown for stories on Docs pages.
 - **`docs.source.type`**: `'dynamic'` updates displayed source to reflect current args where supported.
+- **`docs.toc`**: Enables Storybook Docs' native table of contents; it does not require a separate third-party addon.
+- **`docs.toc.headingSelector`**: `'h2, h3'` includes documentation sections and subsections while omitting the page title.
+- **`docs.toc.title`**: `'On this page'` gives the navigation sidebar a concise visible label.
 - **`layout`**: `'centered'` centers every story in the preview canvas unless the story overrides the layout.
 
 ## When To Use Which File

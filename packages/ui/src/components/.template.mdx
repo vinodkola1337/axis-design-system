@@ -1,0 +1,55 @@
+{/* Copy this file into a component folder, rename it, and replace ComponentName and story references. */}
+
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks'
+import * as Stories from './ComponentName.stories'
+
+<Meta of={Stories} />
+
+# ComponentName
+
+## Overview
+
+Write one short paragraph describing the component's purpose.
+
+## Simple Example
+
+<Canvas of={Stories.Primary} />
+
+## Usage
+
+| Use | Avoid |
+|---|---|
+| Add two to five high-level usage guidelines. | Add the corresponding misuse to avoid. |
+| Keep guidance focused on user and design decisions. | Repeat prop definitions or self-explanatory states. |
+
+## Variants
+
+<Canvas of={Stories.Variants} />
+
+| Variant | Use when |
+|---|---|
+| Primary | The action is the main next step. |
+| Secondary | The action supports the primary action. |
+| Ghost | The action needs low visual emphasis. |
+| Danger | The action is destructive or difficult to reverse. |
+
+## API
+
+<ArgTypes />
+
+## Accessibility
+
+### Screen Reader
+
+Describe accessible naming, announcements, and relationships. Add a component-specific labeling example when useful.
+
+```html
+<ComponentName aria-label="Describe the action" />
+```
+
+### Keyboard Support
+
+| Key | Function |
+|---|---|
+| `Enter` | Describe the interaction, or remove this row when it does not apply. |
+| `Space` | Describe the interaction, or remove this row when it does not apply. |

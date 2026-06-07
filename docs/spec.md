@@ -33,7 +33,8 @@ Update status inline as work completes: `[ ]` → `[x]`.
 - [x] `packages/docs` wired — token CSS imported globally, UI stories colocated with component source and discovered by Storybook
 - [x] Stories for Button and TextInput (variants + states visible in browser)
 - [x] Upgrade to Storybook 10 and configure Docs plus core Controls, Actions, and viewport testing
-- [ ] Establish a reusable component documentation template covering overview, usage guidance, anatomy, variants, states, accessibility, API/props, and examples
+- [x] Enable Storybook Docs' native table of contents globally for documentation section headings
+- [x] Establish a reusable component documentation template covering Overview, Simple Example, Usage, Variants, API, and Accessibility
 - [ ] Add interactive Controls panels for public component props using typed `args` and `argTypes`, including sensible controls, options, defaults, descriptions, and disabled controls for non-editable values
 - [ ] Add complete Button documentation using the component documentation template
 - [ ] Add complete TextInput documentation using the component documentation template

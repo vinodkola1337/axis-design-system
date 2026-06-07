@@ -272,6 +272,16 @@ pnpm --filter @vinodkola/axis-ui publish
 
 Component stories are colocated with their Vue components under `packages/ui/src/components`, while `packages/docs` remains the private Storybook host. Stories import local `.vue` source directly for reliable docgen, and the docs Vite config processes the UI package's source-level global CSS with the same Vue and Tailwind plugins used by the library.
 
+Storybook Docs uses the native `docs.toc` parameter from `@storybook/addon-docs` for page navigation. The global preview includes `h2` and `h3` headings so component documentation sections and subsections appear without adding a third-party TOC addon. Individual component metadata may disable or refine the TOC for exceptional pages.
+
+Component documentation uses colocated MDX pages in this standard order: Overview, Simple Example, Usage, Variants, API, and Accessibility. The Docs page is the complete component guideline, so there is no separate Guidelines section. Usage contains one concise Use/Avoid table, while related variants, sizes, or states are shown together in comparison stories rather than one Docs Canvas per option.
+
+Custom MDX pages attach to colocated story metadata with Storybook's `Meta` block. Individual stories remain available in the sidebar for development, but Docs pages embed only the common example and grouped stories that help consumers make design decisions. Once a custom MDX page exists, its story metadata must remove the `autodocs` tag to prevent duplicate Docs entries.
+
+API tables use Storybook Doc Blocks and Vue metadata so props, slots, and emitted events are not duplicated manually. Accessibility always covers screen-reader behavior and keyboard support. Component-level version history is excluded; release history belongs in the future package changelog and standalone Release Notes page.
+
+Because MDX files live in `packages/ui` while Storybook dependencies live in private `packages/docs`, the docs Vite config resolves the Doc Blocks entrypoint from the host package. It also normalizes Storybook's generated `file://` MDX imports on Windows. This preserves package boundaries without adding Storybook runtime dependencies to the published UI package.
+
 | Setting | Value |
 |---|---|
 | Root directory | `/` |

@@ -20,6 +20,9 @@ const preview: Preview = {
       source: {
         type: 'dynamic',
       },
+      toc: {
+        headingSelector: 'h2, h3',
+      },
     },
     layout: 'centered',
   },
