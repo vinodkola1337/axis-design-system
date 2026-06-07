@@ -30,8 +30,15 @@ Update status inline as work completes: `[ ]` → `[x]`.
 
 ## Phase 3 — Storybook
 
-- [ ] `packages/docs` wired — `@vinodkola/axis-tokens` and `@vinodkola/axis-ui` linked, `tokens.css` imported globally
-- [ ] Stories for Button and TextInput (variants + states visible in browser)
+- [x] `packages/docs` wired — `@vinodkola/axis-tokens` and `@vinodkola/axis-ui` linked, `tokens.css` imported globally
+- [x] Stories for Button and TextInput (variants + states visible in browser)
+- [ ] Install and configure Storybook addons for Docs, Controls, Actions, and viewport testing
+- [ ] Establish a reusable component documentation template covering overview, usage guidance, anatomy, variants, states, accessibility, API/props, and examples
+- [ ] Add interactive Controls panels for public component props using typed `args` and `argTypes`, including sensible controls, options, defaults, descriptions, and disabled controls for non-editable values
+- [ ] Add complete Button documentation using the component documentation template
+- [ ] Add complete TextInput documentation using the component documentation template
+- [ ] Document component slots and emitted events alongside props where applicable
+- [ ] Verify Storybook Docs pages and interactive controls in the browser and production build
 
 ---
 

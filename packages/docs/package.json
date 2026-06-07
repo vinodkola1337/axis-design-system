@@ -9,7 +9,8 @@
   "devDependencies": {
     "@storybook/vue3": "^8.0.0",
     "@storybook/vue3-vite": "^8.0.0",
-    "storybook": "^8.0.0"
+    "storybook": "^8.0.0",
+    "vue": "^3.4.0"
   },
   "dependencies": {
     "@vinodkola/axis-tokens": "workspace:*",
