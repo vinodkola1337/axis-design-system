@@ -9,3 +9,26 @@
   justify-content: center;
   width: 100%;
 }
+
+.axis-story-frame:has(.axis-color-token-docs) {
+  align-items: stretch;
+  justify-content: flex-start;
+}
+
+.docs-story:has(.axis-color-token-docs) {
+  align-content: stretch !important;
+  align-items: stretch !important;
+  justify-content: flex-start !important;
+  place-content: normal !important;
+  place-items: stretch !important;
+}
+
+.docs-story:has(.axis-color-token-docs) .innerZoomElementWrapper {
+  width: 100%;
+}
+
+.axis-story-frame:has(.axis-color-token-docs) > * {
+  flex: 1 1 auto;
+  min-width: 0;
+  width: 100%;
+}

@@ -1,0 +1,51 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks'
+import * as Stories from './colors.stories'
+
+<Meta of={Stories} />
+
+# Colors
+
+## Overview
+
+Axis color is token-first. Primitive colors define the palette, semantic colors define UI roles, and component colors connect those roles to specific component parts.
+
+<Canvas of={Stories.UsageExample} />
+
+## Usage
+
+Use semantic tokens for product surfaces, text, icons, borders, and state indicators. Axis components use component tokens internally. Treat primitive colors as palette source values, not as application styling hooks.
+
+```css
+.page {
+  background: var(--axis-color-background-default);
+  color: var(--axis-color-text-primary);
+}
+
+.custom-control {
+  border-color: var(--axis-color-border-default);
+}
+```
+
+## Token Tiers
+
+| Tier | Purpose | Use directly in product UI |
+|---|---|---|
+| Semantic | Role-based color decisions for background, surface, text, border, interactive, and feedback. | Yes |
+| Primitive | Raw palette values such as blue, gray, red, green, amber, white, black, and transparent. | No |
+| Component | Component-specific color slots such as button background, text-input border, and label required mark. Documented with the component when relevant. | No |
+
+## Semantic Tokens
+
+Semantic tokens are the preferred styling API for product UI and documentation examples.
+
+<Canvas of={Stories.SemanticTokenList} />
+
+## Primitive Palette
+
+Primitive colors are source values for semantic tokens. They are documented so designers and maintainers can audit the palette, but components should not reference them directly.
+
+<Canvas of={Stories.PrimitivePalette} />
+
+## Accessibility
+
+Do not rely on color alone to communicate status. Pair error, warning, and success color with text, icons, or state labels. When adding or changing semantic tokens, check contrast for the intended text and surface pairing before the token becomes part of the public API.

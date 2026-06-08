@@ -195,6 +195,8 @@ Storybook documents icon usage under `Styles/Icons` instead of a separate `Compo
 
 PrimeIcons remains acceptable for PrimeVue-backed internals when a Prime component expects it, but product-facing Axis documentation and examples should prefer Lucide through `Icon` for visual consistency and SVG-level control.
 
+Storybook documents color usage under `Styles/Colors`. The page exposes primitive and semantic color token tiers because color is a system-level styling decision rather than an individual component API. Product UI guidance should point consumers to semantic color variables first; primitive variables remain documented for palette audit and token maintenance, not direct application styling. Component color tokens are implementation details and should be explained in component documentation when that mapping matters.
+
 ---
 
 ## Component CSS Class Naming
