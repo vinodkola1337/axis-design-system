@@ -37,6 +37,8 @@ Update status inline as work completes: `[ ]` → `[x]`.
 - [x] Enable Storybook Docs' native table of contents globally for documentation section headings
 - [x] Add consolidated Styles/Icons documentation for Lucide usage, Axis token guidance, Icon API, and accessibility
 - [x] Add Styles/Colors documentation showing primitive and semantic color tokens with component-token guidance
+- [x] Add Styles/Typography documentation showing font families, type scale, weights, line heights, and role guidance
+- [x] Add optional `@vinodkola/axis-ui/base.css` for app-level typography defaults and type role classes
 - [x] Establish a reusable component documentation template covering Overview with an untitled common example, Usage, Variants, API, and Accessibility
 - [ ] Add interactive Controls panels for public component props using typed `args` and `argTypes`, including sensible controls, options, defaults, descriptions, and disabled controls for non-editable values
 - [x] Add complete Button documentation using the component documentation template

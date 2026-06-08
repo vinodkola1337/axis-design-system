@@ -10,12 +10,14 @@
   width: 100%;
 }
 
-.axis-story-frame:has(.axis-color-token-docs) {
+.axis-story-frame:has(.axis-color-token-docs),
+.axis-story-frame:has(.axis-typography-token-docs) {
   align-items: stretch;
   justify-content: flex-start;
 }
 
-.docs-story:has(.axis-color-token-docs) {
+.docs-story:has(.axis-color-token-docs),
+.docs-story:has(.axis-typography-token-docs) {
   align-content: stretch !important;
   align-items: stretch !important;
   justify-content: flex-start !important;
@@ -23,11 +25,13 @@
   place-items: stretch !important;
 }
 
-.docs-story:has(.axis-color-token-docs) .innerZoomElementWrapper {
+.docs-story:has(.axis-color-token-docs) .innerZoomElementWrapper,
+.docs-story:has(.axis-typography-token-docs) .innerZoomElementWrapper {
   width: 100%;
 }
 
-.axis-story-frame:has(.axis-color-token-docs) > * {
+.axis-story-frame:has(.axis-color-token-docs) > *,
+.axis-story-frame:has(.axis-typography-token-docs) > * {
   flex: 1 1 auto;
   min-width: 0;
   width: 100%;

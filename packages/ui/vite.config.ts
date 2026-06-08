@@ -1,10 +1,24 @@
+import { readFileSync } from 'node:fs'
 import { fileURLToPath, URL } from 'node:url'
 import { defineConfig } from 'vite'
 import vue from '@vitejs/plugin-vue'
 import tailwindcss from '@tailwindcss/vite'
 
 export default defineConfig({
-  plugins: [tailwindcss(), vue()],
+  plugins: [
+    tailwindcss(),
+    vue(),
+    {
+      name: 'axis-base-css',
+      generateBundle() {
+        this.emitFile({
+          type: 'asset',
+          fileName: 'base.css',
+          source: readFileSync(fileURLToPath(new URL('src/styles/base.css', import.meta.url)), 'utf8'),
+        })
+      },
+    },
+  ],
   build: {
     lib: {
       entry: {
@@ -20,7 +34,7 @@ export default defineConfig({
     rollupOptions: {
       external: ['vue'],
       output: {
-        assetFileNames: 'style[extname]',
+        assetFileNames: (assetInfo) => assetInfo.name === 'base.css' ? 'base[extname]' : 'style[extname]',
       },
     },
   },

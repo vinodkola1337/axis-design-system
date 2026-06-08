@@ -1,5 +1,6 @@
 import type { Preview } from '@storybook/vue3-vite'
 import '@vinodkola/axis-tokens/dist/tokens.css'
+import '../../ui/src/styles/base.css'
 import '../../ui/src/styles/main.css'
 import './preview.css'
 

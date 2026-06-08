@@ -1,0 +1,94 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks'
+import * as Stories from './typography.stories'
+
+<Meta of={Stories} />
+
+# Typography
+
+## Overview
+
+Axis typography uses a small token scale for product interfaces: readable body text, clear labels, and headings that create hierarchy without becoming decorative.
+
+<Canvas of={Stories.UsageExample} />
+
+## Usage
+
+#### Using Typography Classes
+
+Import the optional base stylesheet in `main.ts` when an app wants Axis typography defaults on `body`, native form controls, code text, and type role classes.
+
+```ts
+import '@vinodkola/axis-ui/base.css'
+```
+
+Use Axis typography classes for common product UI roles. This is the recommended path for app screens because the class already combines the right font size, weight, and line height.
+
+```html
+<p class="axis-type-body-md">Manage profile, security, and notification preferences.</p>
+```
+
+#### Using Typography Tokens Directly
+
+Use typography tokens when you need custom composition, such as a specialized layout, generated content, or a framework integration where classes are not the right fit. Keep type hierarchy shallow: most screens need body text, labels, one section heading, and occasional page-level headings.
+
+```html
+<p style="font-size: var(--axis-font-size-base); line-height: var(--axis-font-line-height-normal);">
+  Manage profile, security, and notification preferences.
+</p>
+```
+
+## Typography Classes
+
+Typography classes are the recommended ergonomic API for app screens and custom product UI. They package token decisions into reusable roles, following Material-style display, headline, title, body, and label categories without requiring consumers to choose size, weight, and line height each time.
+
+<Canvas of={Stories.AxisTypographyClasses} />
+
+| Role | Classes | Use for |
+|---|---|---|
+| Display | `.axis-type-display-lg`, `.axis-type-display-md`, `.axis-type-display-sm` | Large page moments and sparse overview screens. |
+| Headline | `.axis-type-headline-lg`, `.axis-type-headline-md`, `.axis-type-headline-sm` | Primary headings inside product workflows. |
+| Title | `.axis-type-title-lg`, `.axis-type-title-md`, `.axis-type-title-sm` | Section headings, panels, dialogs, and grouped content. |
+| Body | `.axis-type-body-lg`, `.axis-type-body-md`, `.axis-type-body-sm` | Default reading text, form content, help text, and metadata. |
+| Label | `.axis-type-label-lg`, `.axis-type-label-md`, `.axis-type-label-sm` | Field labels, compact controls, table headers, captions, and dense UI text. |
+| Code | `.axis-type-code` | Token names, code, and technical values. |
+
+## Typography Tokens
+
+Tokens are the lower-level API. Use them to compose custom roles while keeping type values aligned with Axis.
+
+### Font Families
+
+Axis ships a system sans stack for interface text and a monospace stack for technical values.
+
+<Canvas of={Stories.FontFamilies} />
+
+### Type Scale
+
+The scale is intentionally compact. Use the middle of the scale for product UI and reserve the largest sizes for page-level emphasis.
+
+<Canvas of={Stories.TypeScale} />
+
+### Weights
+
+Use weight to clarify hierarchy, not to compensate for unclear spacing or layout.
+
+<Canvas of={Stories.FontWeights} />
+
+### Line Heights
+
+Use tighter line heights for headings and normal or relaxed line heights for multi-line reading text.
+
+<Canvas of={Stories.LineHeights} />
+
+## Accessibility
+
+Readable typography depends on more than token choice. Use semantic HTML for document structure, then use Axis classes or tokens to express the visual hierarchy.
+
+| Concern | Axis guidance |
+|---|---|
+| Heading structure | Keep headings in logical order with native `h1`-`h6` elements. Do not choose a heading level for its default visual size. |
+| Body readability | Use `.axis-type-body-md` or `--axis-font-size-base` for normal reading text. Reserve `xs` and `sm` for short labels, metadata, and helper text. |
+| Line height | Use `normal` or `relaxed` for multi-line body copy. Use `tight` or `snug` for headings and short title text. |
+| State communication | Do not rely on font size, weight, or color alone to communicate state. Pair important states with text, icons, component state, or ARIA where needed. |
+| Long-form copy | Keep line lengths bounded by the layout. Longer help or documentation text should use comfortable line height and avoid dense small sizes. |
+| Custom typography | Prefer typography classes first. When composing with tokens directly, preserve readable size, contrast, spacing, and semantic markup. |

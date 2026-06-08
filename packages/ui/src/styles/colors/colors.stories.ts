@@ -148,6 +148,13 @@ export const UsageExample: Story = {
 
 export const PrimitivePalette: Story = {
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      canvas: {
+        sourceState: 'none',
+      },
+    },
+  },
   render: () => ({
     setup: () => ({
       groupedPrimitiveColors,
@@ -185,6 +192,13 @@ export const PrimitivePalette: Story = {
 
 export const SemanticTokenList: Story = {
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      canvas: {
+        sourceState: 'none',
+      },
+    },
+  },
   render: () => ({
     setup: () => ({
       semanticColors,

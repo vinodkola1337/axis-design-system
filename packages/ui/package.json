@@ -26,6 +26,7 @@
       "import": "./dist/text-input.js",
       "types": "./dist/text-input.d.ts"
     },
+    "./base.css": "./dist/base.css",
     "./style.css": "./dist/style.css"
   },
   "scripts": {

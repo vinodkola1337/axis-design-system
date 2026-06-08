@@ -1,0 +1,160 @@
+html {
+  font-family: var(--axis-font-family-sans);
+  text-size-adjust: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--axis-color-background-default);
+  color: var(--axis-color-text-primary);
+  font-family: var(--axis-font-family-sans);
+  font-size: var(--axis-font-size-base);
+  font-weight: var(--axis-font-weight-regular);
+  line-height: var(--axis-font-line-height-normal);
+}
+
+button,
+input,
+textarea,
+select {
+  font: inherit;
+}
+
+code,
+kbd,
+samp,
+pre {
+  font-family: var(--axis-font-family-mono);
+}
+
+.axis-type-display-lg,
+.axis-type-display-md,
+.axis-type-display-sm,
+.axis-type-headline-lg,
+.axis-type-headline-md,
+.axis-type-headline-sm,
+.axis-type-title-lg,
+.axis-type-title-md,
+.axis-type-title-sm,
+.axis-type-body-lg,
+.axis-type-body-md,
+.axis-type-body-sm,
+.axis-type-page-title,
+.axis-type-section-title,
+.axis-type-body,
+.axis-type-supporting {
+  margin: 0;
+  color: var(--axis-color-text-primary);
+  font-family: var(--axis-font-family-sans);
+}
+
+.axis-type-display-lg {
+  font-size: var(--axis-font-size-5xl);
+  font-weight: var(--axis-font-weight-semibold);
+  line-height: var(--axis-font-line-height-tight);
+}
+
+.axis-type-display-md {
+  font-size: var(--axis-font-size-4xl);
+  font-weight: var(--axis-font-weight-semibold);
+  line-height: var(--axis-font-line-height-tight);
+}
+
+.axis-type-display-sm,
+.axis-type-page-title {
+  font-size: var(--axis-font-size-3xl);
+  font-weight: var(--axis-font-weight-semibold);
+  line-height: var(--axis-font-line-height-tight);
+}
+
+.axis-type-headline-lg {
+  font-size: var(--axis-font-size-3xl);
+  font-weight: var(--axis-font-weight-semibold);
+  line-height: var(--axis-font-line-height-snug);
+}
+
+.axis-type-headline-md {
+  font-size: var(--axis-font-size-2xl);
+  font-weight: var(--axis-font-weight-semibold);
+  line-height: var(--axis-font-line-height-snug);
+}
+
+.axis-type-headline-sm {
+  font-size: var(--axis-font-size-xl);
+  font-weight: var(--axis-font-weight-semibold);
+  line-height: var(--axis-font-line-height-snug);
+}
+
+.axis-type-title-lg,
+.axis-type-section-title {
+  font-size: var(--axis-font-size-xl);
+  font-weight: var(--axis-font-weight-semibold);
+  line-height: var(--axis-font-line-height-snug);
+}
+
+.axis-type-title-md {
+  font-size: var(--axis-font-size-lg);
+  font-weight: var(--axis-font-weight-semibold);
+  line-height: var(--axis-font-line-height-snug);
+}
+
+.axis-type-title-sm {
+  font-size: var(--axis-font-size-base);
+  font-weight: var(--axis-font-weight-medium);
+  line-height: var(--axis-font-line-height-snug);
+}
+
+.axis-type-body-lg {
+  font-size: var(--axis-font-size-lg);
+  font-weight: var(--axis-font-weight-regular);
+  line-height: var(--axis-font-line-height-normal);
+}
+
+.axis-type-body-md,
+.axis-type-body {
+  font-size: var(--axis-font-size-base);
+  font-weight: var(--axis-font-weight-regular);
+  line-height: var(--axis-font-line-height-normal);
+}
+
+.axis-type-body-sm,
+.axis-type-supporting {
+  font-size: var(--axis-font-size-sm);
+  font-weight: var(--axis-font-weight-regular);
+  line-height: var(--axis-font-line-height-normal);
+}
+
+.axis-type-supporting {
+  color: var(--axis-color-text-secondary);
+}
+
+.axis-type-label-lg,
+.axis-type-label-md,
+.axis-type-label-sm,
+.axis-type-label {
+  color: var(--axis-color-text-primary);
+  font-family: var(--axis-font-family-sans);
+  font-weight: var(--axis-font-weight-medium);
+  line-height: var(--axis-font-line-height-tight);
+}
+
+.axis-type-label-lg {
+  font-size: var(--axis-font-size-base);
+}
+
+.axis-type-label-md,
+.axis-type-label {
+  font-size: var(--axis-font-size-sm);
+}
+
+.axis-type-label-sm {
+  font-size: var(--axis-font-size-xs);
+}
+
+.axis-type-code {
+  color: var(--axis-color-text-primary);
+  font-family: var(--axis-font-family-mono);
+  font-size: var(--axis-font-size-sm);
+  font-weight: var(--axis-font-weight-regular);
+  line-height: var(--axis-font-line-height-normal);
+}

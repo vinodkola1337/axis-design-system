@@ -197,6 +197,10 @@ PrimeIcons remains acceptable for PrimeVue-backed internals when a Prime compone
 
 Storybook documents color usage under `Styles/Colors`. The page exposes primitive and semantic color token tiers because color is a system-level styling decision rather than an individual component API. Product UI guidance should point consumers to semantic color variables first; primitive variables remain documented for palette audit and token maintenance, not direct application styling. Component color tokens are implementation details and should be explained in component documentation when that mapping matters.
 
+Storybook documents typography under `Styles/Typography`. The page separates Axis typography classes from typography tokens so consumers can choose the ergonomic role API for common product UI or the lower-level token API for custom composition. Axis keeps typography documentation intentionally compact for portfolio scope: enough guidance to build readable product screens without introducing a full editorial type system.
+
+Axis exports optional app-level typography defaults through `@vinodkola/axis-ui/base.css`. This stylesheet sets `body` typography, surface/text defaults, native form-control font inheritance, monospace defaults, and explicit type role classes such as `.axis-type-display-sm`, `.axis-type-headline-md`, `.axis-type-title-lg`, `.axis-type-body-md`, and `.axis-type-label-md`. Legacy aliases such as `.axis-type-page-title`, `.axis-type-section-title`, `.axis-type-body`, `.axis-type-supporting`, and `.axis-type-label` remain available for compatibility. It is separate from `@vinodkola/axis-ui/style.css` so component consumers can opt into global app styling deliberately instead of receiving body-level side effects from the component stylesheet.
+
 ---
 
 ## Component CSS Class Naming
@@ -359,7 +363,8 @@ Axis DS follows **Material Design 3 (MD3)** as its primary design guideline refe
 
 // In app entry (main.ts)
 import '@vinodkola/axis-tokens/dist/tokens.css'   // 1. CSS custom property values (:root)
-import '@vinodkola/axis-ui/style.css'             // 2. Tailwind utilities + component styles
+import '@vinodkola/axis-ui/base.css'              // 2. Optional app-level defaults
+import '@vinodkola/axis-ui/style.css'             // 3. Tailwind utilities + component styles
 
 // Per component
 import { Button } from '@vinodkola/axis-ui'
