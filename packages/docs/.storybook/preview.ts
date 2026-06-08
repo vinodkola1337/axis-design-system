@@ -6,6 +6,11 @@ import './preview.css'
 const vueFrameworkArgTypes = ['key', 'ref', 'ref_for', 'ref_key', 'class', 'style']
 
 const preview: Preview = {
+  decorators: [
+    () => ({
+      template: '<div class="axis-story-frame"><story /></div>',
+    }),
+  ],
   parameters: {
     actions: {
       argTypesRegex: '^on[A-Z].*',

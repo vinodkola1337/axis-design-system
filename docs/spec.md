@@ -22,7 +22,8 @@ Update status inline as work completes: `[ ]` → `[x]`.
 
 ## Phase 2 — Atom Components (from scratch)
 
-- [x] `Button` — filled / outlined / text emphasis, primary / danger severity, sizes, disabled state; uses `--axis-button-*` tokens
+- [x] `Button` — filled / outlined / text emphasis, primary / danger severity, sizes, inferred icon-only mode, disabled state; uses `--axis-button-*` tokens
+- [x] `Icon` - Lucide-compatible component prop API, tokenized sizes / stroke weights, decorative and meaningful accessibility behavior; uses `--axis-icon-*` tokens
 - [x] `TextInput` — text-like input, sizes, fluid mode, label prop / slot, float label, error state; uses `--axis-text-input-*` tokens
 - [x] `Label` — standalone label atom; required / disabled states; uses `--axis-label-*` tokens
 
@@ -34,7 +35,7 @@ Update status inline as work completes: `[ ]` → `[x]`.
 - [x] Stories for Button and TextInput (variants + states visible in browser)
 - [x] Upgrade to Storybook 10 and configure Docs plus core Controls, Actions, and viewport testing
 - [x] Enable Storybook Docs' native table of contents globally for documentation section headings
-- [x] Add Styles/Icons documentation for Lucide usage with Axis token guidance
+- [x] Add consolidated Styles/Icons documentation for Lucide usage, Axis token guidance, Icon API, and accessibility
 - [x] Establish a reusable component documentation template covering Overview with an untitled common example, Usage, Variants, API, and Accessibility
 - [ ] Add interactive Controls panels for public component props using typed `args` and `argTypes`, including sensible controls, options, defaults, descriptions, and disabled controls for non-editable values
 - [x] Add complete Button documentation using the component documentation template

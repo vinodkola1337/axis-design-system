@@ -40,21 +40,31 @@ Example:
 Immediately after the Overview paragraph, show one interactive `Canvas` using the most common configuration. Do not add a heading for this example. It should help a reader understand the component before they encounter detailed options.
 
 ```mdx
-<Canvas of={Stories.Primary} />
+<Canvas of={Stories.Playground} />
 ```
 
 ## Usage
 
-Start with three to five short best-practice bullets for broad principles. Place them directly under Usage without an additional heading. Use a bold lead-in so each recommendation is easy to scan, followed by one or two sentences of explanation.
+Start with a short Vue import and usage example showing the most common component configuration. Follow it with three to five short best-practice bullets for broad principles. Use a bold lead-in so each recommendation is easy to scan, followed by one or two sentences of explanation.
 
 Follow the bullets with a compact, two-column **Use / Avoid** table containing two or three concrete comparisons. Do not repeat every bullet in the table. Bullets explain principles; the table contrasts specific good and bad examples.
 
 Translate relevant Material Design principles into concise Axis-specific guidance rather than quoting Material documentation.
 
-```mdx
+````mdx
+```vue
+<script setup lang="ts">
+import { Button } from '@vinodkola/axis-ui'
+</script>
+
+<template>
+  <Button label="Save changes" />
+</template>
+```
+
 - **Label actions clearly:** Use concise, action-oriented text in sentence case.
 - **Establish a clear hierarchy:** Reserve the highest emphasis for the main next step.
-```
+````
 
 The docs host enables GitHub-Flavored Markdown through `remark-gfm`, so use concise pipe tables in component MDX:
 

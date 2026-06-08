@@ -1,31 +1,48 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
+import { Search } from '@lucide/vue'
 import Button from './Button.vue'
+
+const iconOptions = {
+  none: undefined,
+  search: Search,
+} as const
 
 const meta = {
   title: 'Components/Button',
   component: Button,
   args: {
-    default: 'Button',
     disabled: false,
     emphasis: 'filled',
+    icon: undefined,
+    iconPosition: 'start',
+    label: 'Button',
     severity: 'primary',
     size: 'md',
     type: 'button',
   },
   argTypes: {
-    default: {
+    label: {
       control: 'text',
-      description: 'Button label rendered through the default slot.',
+      description: 'Visible button label. Prefer this prop for standard text buttons.',
       table: {
-        category: 'Slots',
         type: { summary: 'string' },
       },
     },
-    disabled: {
-      control: 'boolean',
-      description: 'Prevents interaction and applies disabled styling.',
+    icon: {
+      control: 'select',
+      description: 'Icon component to render through Axis Icon. Lucide icons from @lucide/vue are recommended.',
+      mapping: iconOptions,
+      options: Object.keys(iconOptions),
       table: {
-        defaultValue: { summary: 'false' },
+        type: { summary: 'Component' },
+      },
+    },
+    iconPosition: {
+      control: 'select',
+      description: 'Places the icon before or after the label.',
+      options: ['start', 'end'],
+      table: {
+        defaultValue: { summary: 'start' },
       },
     },
     emphasis: {
@@ -46,10 +63,17 @@ const meta = {
     },
     size: {
       control: 'select',
-      description: 'Controls the button height, text size, and horizontal padding.',
+      description: 'Controls the button height, text size, horizontal padding, and icon size.',
       options: ['sm', 'md', 'lg'],
       table: {
         defaultValue: { summary: 'md' },
+      },
+    },
+    disabled: {
+      control: 'boolean',
+      description: 'Prevents interaction and applies disabled styling.',
+      table: {
+        defaultValue: { summary: 'false' },
       },
     },
     type: {
@@ -66,14 +90,16 @@ const meta = {
     setup: () => ({ args }),
     template: `
       <Button
+        :aria-label="!args.label && args.icon ? 'Search' : undefined"
         :disabled="args.disabled"
         :emphasis="args.emphasis"
+        :icon="args.icon"
+        :icon-position="args.iconPosition"
+        :label="args.label"
         :severity="args.severity"
         :size="args.size"
         :type="args.type"
-      >
-        {{ args.default }}
-      </Button>
+      />
     `,
   }),
 } satisfies Meta<typeof Button>
@@ -81,35 +107,48 @@ const meta = {
 export default meta
 type Story = StoryObj<typeof meta>
 
-export const Primary: Story = {}
+export const Playground: Story = {}
 
-export const Outlined: Story = {
-  args: {
-    emphasis: 'outlined',
+export const IconExamples: Story = {
+  tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: {
+        code: `<Button :icon="Search" label="Start icon" />
+<Button :icon="Search" icon-position="end" label="End icon" />
+<Button :icon="Search" aria-label="Search" />`,
+      },
+    },
   },
-}
-
-export const Text: Story = {
-  args: {
-    emphasis: 'text',
-  },
-}
-
-export const Danger: Story = {
-  args: {
-    default: 'Delete',
-    severity: 'danger',
-  },
+  render: () => ({
+    components: { Button },
+    setup: () => ({ Search }),
+    template: `
+      <div style="display: flex; align-items: center; gap: var(--axis-spacing-4);">
+        <Button :icon="Search" label="Start icon" />
+        <Button :icon="Search" icon-position="end" label="End icon" />
+        <Button :icon="Search" aria-label="Search" />
+      </div>
+    `,
+  }),
 }
 
 export const Severities: Story = {
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: {
+        code: `<Button label="Primary" severity="primary" />
+<Button label="Danger" severity="danger" />`,
+      },
+    },
+  },
   render: () => ({
     components: { Button },
     template: `
       <div style="display: flex; align-items: center; gap: var(--axis-spacing-4);">
-        <Button severity="primary">Primary</Button>
-        <Button severity="danger">Danger</Button>
+        <Button label="Primary" severity="primary" />
+        <Button label="Danger" severity="danger" />
       </div>
     `,
   }),
@@ -117,13 +156,22 @@ export const Severities: Story = {
 
 export const Emphases: Story = {
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: {
+        code: `<Button label="Filled" emphasis="filled" />
+<Button label="Outlined" emphasis="outlined" />
+<Button label="Text" emphasis="text" />`,
+      },
+    },
+  },
   render: () => ({
     components: { Button },
     template: `
       <div style="display: flex; align-items: center; gap: var(--axis-spacing-4);">
-        <Button emphasis="filled">Filled</Button>
-        <Button emphasis="outlined">Outlined</Button>
-        <Button emphasis="text">Text</Button>
+        <Button label="Filled" emphasis="filled" />
+        <Button label="Outlined" emphasis="outlined" />
+        <Button label="Text" emphasis="text" />
       </div>
     `,
   }),
@@ -131,19 +179,29 @@ export const Emphases: Story = {
 
 export const Sizes: Story = {
   tags: ['!dev'],
+  parameters: {
+    docs: {
+      source: {
+        code: `<Button label="Small" size="sm" />
+<Button label="Medium" size="md" />
+<Button label="Large" size="lg" />`,
+      },
+    },
+  },
   render: () => ({
     components: { Button },
     template: `
       <div style="display: flex; align-items: center; gap: var(--axis-spacing-4);">
-        <Button size="sm">Small</Button>
-        <Button size="md">Medium</Button>
-        <Button size="lg">Large</Button>
+        <Button label="Small" size="sm" />
+        <Button label="Medium" size="md" />
+        <Button label="Large" size="lg" />
       </div>
     `,
   }),
 }
 
 export const Disabled: Story = {
+  tags: ['!dev'],
   args: {
     disabled: true,
   },

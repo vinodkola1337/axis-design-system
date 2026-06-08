@@ -9,9 +9,19 @@ import * as Stories from './Button.stories'
 
 Button communicates an action that a user can take and gives that action an appropriate level of emphasis.
 
-<Canvas of={Stories.Primary} />
+<Canvas of={Stories.Playground} />
 
 ## Usage
+
+```vue
+<script setup lang="ts">
+import { Button } from '@vinodkola/axis-ui'
+</script>
+
+<template>
+  <Button label="Save changes" />
+</template>
+```
 
 - **Label actions clearly:** Use concise, action-oriented text in sentence case, such as "Save changes". Avoid unnecessary words and punctuation.
 - **Establish a clear hierarchy:** Use filled emphasis for the main next step and reduce emphasis for supporting actions.
@@ -61,6 +71,14 @@ The `size` prop controls the button's dimensions and label size.
 | Medium | The button appears in standard forms, dialogs, and page actions. |
 | Large | The action needs a larger touch target or stronger prominence in a spacious layout. |
 
+### Icons
+
+Use `icon` with `iconPosition` for leading, trailing, or icon-only actions.
+
+<Canvas of={Stories.IconExamples} />
+
+For icon-only buttons, omit `label` and provide `aria-label`.
+
 ### Disabled
 
 The `disabled` prop makes the button unavailable for interaction.
@@ -71,7 +89,7 @@ The `disabled` prop makes the button unavailable for interaction.
 
 <ArgTypes />
 
-The default slot supplies the visible button label. Native attributes and listeners, including `aria-*` attributes and `click`, fall through to the underlying `<button>`.
+Use `label`, `icon`, and `iconPosition` for standard Button content. The default slot remains available for custom content. Native attributes and listeners, including `aria-*` attributes and `click`, fall through to the underlying `<button>`.
 
 ## Accessibility
 
@@ -80,9 +98,7 @@ The default slot supplies the visible button label. Native attributes and listen
 Use visible text that clearly names the action. For an icon-only button, provide an accessible name with `aria-label`; do not rely on the icon alone.
 
 ```vue
-<Button aria-label="Close dialog">
-  <CloseIcon aria-hidden="true" />
-</Button>
+<Button :icon="CloseIcon" aria-label="Close dialog" />
 ```
 
 The native `disabled` attribute communicates the unavailable state to assistive technology and prevents activation.

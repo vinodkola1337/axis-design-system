@@ -1,18 +1,26 @@
 <template>
   <button :class="classes" :disabled="disabled" :type="type">
-    <slot />
+    <AxisIcon v-if="icon && iconPosition === 'start'" :icon="icon" :size="iconSize" />
+    <span v-if="label">{{ label }}</span>
+    <slot v-else />
+    <AxisIcon v-if="icon && iconPosition === 'end'" :icon="icon" :size="iconSize" />
   </button>
 </template>
 
 <script setup lang="ts">
-import { computed } from 'vue'
+import type { Component } from 'vue'
+import { computed, useSlots } from 'vue'
+import AxisIcon from '../icon/Icon.vue'
 
 defineOptions({
   name: 'AxisButton',
 })
- 
+
 const props = withDefaults(
   defineProps<{
+    label?: string
+    icon?: Component
+    iconPosition?: 'start' | 'end'
     emphasis?: 'filled' | 'outlined' | 'text'
     severity?: 'primary' | 'danger'
     size?: 'sm' | 'md' | 'lg'
@@ -20,6 +28,7 @@ const props = withDefaults(
     type?: 'button' | 'submit' | 'reset'
   }>(),
   {
+    iconPosition: 'start',
     emphasis: 'filled',
     severity: 'primary',
     size: 'md',
@@ -28,11 +37,20 @@ const props = withDefaults(
   },
 )
 
+const slots = useSlots()
+
+const hasVisibleLabel = computed(() => Boolean(props.label || slots.default))
+const isIconOnly = computed(() => Boolean(props.icon && !hasVisibleLabel.value))
+const iconSize = computed(() => props.size)
+
 const classes = computed(() => [
   'axis-button',
   `axis-button--${props.emphasis}`,
   `axis-button--${props.severity}`,
   `axis-button--${props.size}`,
+  {
+    'axis-button--icon-only': isIconOnly.value,
+  },
 ])
 </script>
 
@@ -165,5 +183,19 @@ const classes = computed(() => [
   font-size: var(--axis-button-size-lg-font-size);
   height: var(--axis-button-size-lg-height);
   padding-inline: var(--axis-button-size-lg-padding-x);
+}
+
+.axis-button--icon-only {
+  min-width: 0;
+  padding-inline: 0;
+  width: var(--axis-button-size-md-height);
+}
+
+.axis-button--icon-only.axis-button--sm {
+  width: var(--axis-button-size-sm-height);
+}
+
+.axis-button--icon-only.axis-button--lg {
+  width: var(--axis-button-size-lg-height);
 }
 </style>

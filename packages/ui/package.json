@@ -14,6 +14,10 @@
       "import": "./dist/button.js",
       "types": "./dist/button.d.ts"
     },
+    "./icon": {
+      "import": "./dist/icon.js",
+      "types": "./dist/icon.d.ts"
+    },
     "./label": {
       "import": "./dist/label.js",
       "types": "./dist/label.d.ts"

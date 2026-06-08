@@ -83,6 +83,19 @@
     "font-weight":         { "$value": "{font.weight.medium}",      "$type": "fontWeight" },
     "line-height":         { "$value": "{font.line-height.tight}",  "$type": "number" }
   },
+  "icon": {
+    "size": {
+      "xs":                { "$value": "{spacing.3}",              "$type": "dimension" },
+      "sm":                { "$value": "{spacing.4}",              "$type": "dimension" },
+      "md":                { "$value": "{spacing.5}",              "$type": "dimension" },
+      "lg":                { "$value": "{spacing.6}",              "$type": "dimension" },
+      "xl":                { "$value": "{spacing.8}",              "$type": "dimension" }
+    },
+    "stroke-width": {
+      "regular":           { "$value": 2,                           "$type": "number" },
+      "strong":            { "$value": 2.5,                         "$type": "number" }
+    }
+  },
   "text-input": {
     "gap":                 { "$value": "{spacing.1}",              "$type": "dimension" },
     "border-radius":       { "$value": "{border-radius.md}",       "$type": "dimension" },

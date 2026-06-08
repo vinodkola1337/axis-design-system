@@ -185,9 +185,15 @@ PrimeVue unstyled mode provides accessibility, keyboard navigation, and ARIA for
 
 ## Icon Strategy
 
-Axis uses `@lucide/vue` as the standard product icon library. Lucide owns the SVG paths; Axis owns presentation through tokens. Icons should inherit `currentColor` by default and use semantic or component tokens for color, size, spacing, and state treatment.
+Axis uses `@lucide/vue` as the standard product icon library through the Axis `Icon` component. Lucide owns the SVG paths; Axis owns presentation through tokens. Icons inherit `currentColor` by default and use `--axis-icon-*` component tokens for size and stroke treatment.
 
-PrimeIcons remains acceptable for PrimeVue-backed internals when a Prime component expects it, but product-facing Axis documentation and examples should prefer Lucide for visual consistency and SVG-level control.
+Product code should pass imported Lucide components to `Icon` with the `icon` prop, such as `<Icon :icon="Search" />`. A string-name registry is intentionally deferred until the icon vocabulary stabilizes; direct imports keep the API low-maintenance and tree-shakable.
+
+Icon keeps accessibility behavior lightweight: native attributes fall through to the root element, and the internal SVG is marked `aria-hidden`. Standalone meaningful icons can pass attributes such as `role="img"` with `aria-label` or `aria-labelledby`; icons inside controls rely on the owning control's accessible name.
+
+Storybook documents icon usage under `Styles/Icons` instead of a separate `Components/Icon` page. `Icon` is still a public component, but it is a thin styling wrapper over Lucide; the consumer decision is usually iconography guidance, token behavior, and accessibility rather than component composition.
+
+PrimeIcons remains acceptable for PrimeVue-backed internals when a Prime component expects it, but product-facing Axis documentation and examples should prefer Lucide through `Icon` for visual consistency and SVG-level control.
 
 ---
 
@@ -285,6 +291,8 @@ Storybook Docs uses the native `docs.toc` parameter from `@storybook/addon-docs`
 Component documentation uses colocated MDX pages in this standard order: Overview, Usage, Variants, API, and Accessibility. One common interactive example appears directly after the Overview paragraph without its own heading. The Docs page is the complete component guideline, so there is no separate Guidelines section. Usage combines concise best-practice bullets with a short Use/Avoid table, while related variants, sizes, or states are shown together in comparison stories rather than one Docs Canvas per option. Each option family includes a one-line description of its controlling prop and a compact decision table, and supported disabled states are documented under Variants for discoverability. Grouped comparison stories use Storybook's `!dev` tag so they remain available to MDX without appearing as standalone development stories in the sidebar.
 
 Button separates visual hierarchy from action intent. The `emphasis` prop controls prominence (`filled`, `outlined`, or `text`), while the `severity` prop controls intent (`primary` or `danger`). This keeps supporting actions such as Back or Cancel as lower-emphasis buttons rather than treating them as separate semantic severities.
+
+Button owns standard icon rendering through `label`, `icon`, and `iconPosition` props. When `icon` is provided without a visible label, Button infers icon-only mode and applies square sizing equal to the tokenized button height. Icon-only buttons rely on native `aria-label` fallthrough for their accessible name instead of a component-specific accessibility prop.
 
 Custom MDX pages attach to colocated story metadata with Storybook's `Meta` block. Individual stories remain available in the sidebar for development, but Docs pages embed only the common example and grouped stories that help consumers make design decisions. Once a custom MDX page exists, its story metadata must remove the `autodocs` tag to prevent duplicate Docs entries.
 
