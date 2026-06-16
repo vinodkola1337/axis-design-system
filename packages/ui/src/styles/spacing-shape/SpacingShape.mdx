@@ -1,0 +1,69 @@
+import { Canvas, Meta } from '@storybook/addon-docs/blocks'
+import * as Stories from './spacing-shape.stories'
+
+<Meta of={Stories} />
+
+# Spacing & Shape
+
+## Overview
+
+Axis spacing and shape tokens define layout rhythm, content spacing, surface corners, and border weight. Use them outside Axis components for page layout, paragraphs, custom panels, and one-off UI that still needs to feel consistent.
+
+```css
+.settings-page {
+  display: grid;
+  gap: var(--axis-spacing-6);
+}
+
+.prose {
+  display: grid;
+  gap: var(--axis-spacing-3);
+}
+
+.custom-panel {
+  padding: var(--axis-spacing-4);
+  border: var(--axis-border-width-1) solid var(--axis-color-border-default);
+  border-radius: var(--axis-border-radius-lg);
+}
+```
+
+## Spacing
+
+Axis uses a compact 4px-based spacing scale. Use smaller values for inline spacing and paragraph rhythm, middle values for panels and forms, and larger values for page sections.
+
+<Canvas of={Stories.SpacingScale} />
+
+| Range | Use for |
+|---|---|
+| `0`-`2` | Tight alignment, inline gaps, metadata groups, and compact paragraph spacing. |
+| `3`-`6` | Prose rhythm, form gaps, custom panel padding, and grouped content. |
+| `8`-`12` | Larger cards, toolbars, page gutters, and section spacing. |
+| `16`-`24` | Major page separation and sparse layout rhythm. |
+
+## Radius
+
+Radius controls the shape language of Axis surfaces and custom UI. Keep radius purposeful: small repeated elements should feel precise, while larger panels can use slightly softer corners.
+
+<Canvas of={Stories.RadiusScale} />
+
+| Token | Use for |
+|---|---|
+| `none` | Flush layouts, dividers, tables, and square containers where rounding would add noise. |
+| `sm` | Small details and compact nested elements. |
+| `md` | Compact custom controls and small interactive elements. |
+| `lg` | Cards, examples, and ordinary custom panels. |
+| `xl` / `2xl` | Larger panels, overlays, and prominent page surfaces. |
+| `full` | Pills, avatars, circular icon surfaces, and fully rounded controls. |
+
+## Borders
+
+Border width tokens keep outlines, dividers, and focus rings consistent. Use semantic border color tokens with these widths for custom layouts and surfaces instead of hardcoding color values.
+
+<Canvas of={Stories.BorderWidths} />
+
+| Token | Use for |
+|---|---|
+| `0` | Removing borders where layout, spacing, or fill already provides separation. |
+| `1` | Default field, card, divider, and outlined-control borders. |
+| `2` | Focus rings and stronger state emphasis for custom interactive UI. |
+| `4` | Rare high-emphasis indicators, not general UI outlines. |

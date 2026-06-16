@@ -1,0 +1,34 @@
+[23:59:37.776] [INFO] storybook v10.4.2
+[23:59:38.765] [DEBUG] Getting package.json info for D:/Repos/axis-design-system/packages/docs/package.json...
+[23:59:39.659] [INFO] Starting...
+[23:59:39.923] [DEBUG] Starting preview..
+[23:59:40.133] [WARN] 🚨 Unable to index ./../ui/src/styles/accessibility/Accessibility.mdx:
+  Error: Invariant failed: Could not find or load CSF file at path "./accessibility.stories" referenced by `of={}` in docs file "..\ui\src\styles\accessibility\Accessibility.mdx".
+
+- Does that file exist?
+- If so, is it a CSF file (`.stories.*`)?
+- If so, is it matched by the `stories` glob in `main.js`?
+- If so, has the file successfully loaded in Storybook and are its stories visible?
+    at invariant (file:///D:/Repos/axis-design-system/node_modules/.pnpm/storybook@10.4.2_@testing-l_4f126682699f07f6b0218c1113ac7747/node_modules/storybook/dist/_node-chunks/chunk-O7TSSZXM.js:20:11)
+    at _StoryIndexGenerator.extractDocs (file:///D:/Repos/axis-design-system/node_modules/.pnpm/storybook@10.4.2_@testing-l_4f126682699f07f6b0218c1113ac7747/node_modules/storybook/dist/core-server/index.js:16731:13)
+    at async file:///D:/Repos/axis-design-system/node_modules/.pnpm/storybook@10.4.2_@testing-l_4f126682699f07f6b0218c1113ac7747/node_modules/storybook/dist/core-server/index.js:16581:39
+    at async Promise.all (index 1)
+    at async Promise.all (index 0)
+    at async _StoryIndexGenerator.updateExtracted (file:///D:/Repos/axis-design-system/node_modules/.pnpm/storybook@10.4.2_@testing-l_4f126682699f07f6b0218c1113ac7747/node_modules/storybook/dist/core-server/index.js:16569:5)
+    at async _StoryIndexGenerator.ensureExtracted (file:///D:/Repos/axis-design-system/node_modules/.pnpm/storybook@10.4.2_@testing-l_4f126682699f07f6b0218c1113ac7747/node_modules/storybook/dist/core-server/index.js:16606:8)
+    at async _StoryIndexGenerator.initialize (file:///D:/Repos/axis-design-system/node_modules/.pnpm/storybook@10.4.2_@testing-l_4f126682699f07f6b0218c1113ac7747/node_modules/storybook/dist/core-server/index.js:16565:5)
+    at async file:///D:/Repos/axis-design-system/node_modules/.pnpm/storybook@10.4.2_@testing-l_4f126682699f07f6b0218c1113ac7747/node_modules/storybook/dist/core-server/presets/common-preset.js:1694:10
+[23:59:40.138] [ERROR] Failed to build the preview
+[23:59:40.143] [ERROR] Error: Unable to index ./../ui/src/styles/accessibility/Accessibility.mdx
+    at _StoryIndexGenerator.getIndexAndStats (file:///D:/Repos/axis-design-system/node_modules/.pnpm/storybook@10.4.2_@testing-l_4f126682699f07f6b0218c1113ac7747/node_modules/storybook/dist/core-server/index.js:16835:15)
+    at async _StoryIndexGenerator.getIndex (file:///D:/Repos/axis-design-system/node_modules/.pnpm/storybook@10.4.2_@testing-l_4f126682699f07f6b0218c1113ac7747/node_modules/storybook/dist/core-server/index.js:16824:13)
+    at async config (file:///D:/Repos/axis-design-system/node_modules/.pnpm/@storybook+builder-vite@10._f73f99a19ec16a0c15eeda1adb28751b/node_modules/@storybook/builder-vite/dist/_node-chunks/chunk-WHZKMS3Q.js:184:19)
+    at async runConfigHook (file:///D:/Repos/axis-design-system/node_modules/.pnpm/vite@5.4.21_lightningcss@1.32.0/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:67004:19)
+    at async resolveConfig (file:///D:/Repos/axis-design-system/node_modules/.pnpm/vite@5.4.21_lightningcss@1.32.0/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:66445:12)
+    at async _createServer (file:///D:/Repos/axis-design-system/node_modules/.pnpm/vite@5.4.21_lightningcss@1.32.0/node_modules/vite/dist/node/chunks/dep-BK3b2jBa.js:63015:18)
+    at async Module.start (file:///D:/Repos/axis-design-system/node_modules/.pnpm/@storybook+builder-vite@10._f73f99a19ec16a0c15eeda1adb28751b/node_modules/@storybook/builder-vite/dist/index.js:1606:17)
+    at async storybookDevServer (file:///D:/Repos/axis-design-system/node_modules/.pnpm/storybook@10.4.2_@testing-l_4f126682699f07f6b0218c1113ac7747/node_modules/storybook/dist/core-server/index.js:18917:158)
+    at async buildOrThrow (file:///D:/Repos/axis-design-system/node_modules/.pnpm/storybook@10.4.2_@testing-l_4f126682699f07f6b0218c1113ac7747/node_modules/storybook/dist/core-server/index.js:8205:12)
+    at async buildDevStandalone (file:///D:/Repos/axis-design-system/node_modules/.pnpm/storybook@10.4.2_@testing-l_4f126682699f07f6b0218c1113ac7747/node_modules/storybook/dist/core-server/index.js:19478:41)
+[23:59:40.145] [WARN] Broken build, fix the error above.
+You may need to refresh the browser.

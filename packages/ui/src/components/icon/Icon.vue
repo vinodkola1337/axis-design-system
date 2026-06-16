@@ -17,10 +17,22 @@ const props = withDefaults(
     icon: Component
     size?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
     stroke?: 'regular' | 'strong'
+    color?:
+      | 'inherit'
+      | 'text'
+      | 'text-secondary'
+      | 'text-disabled'
+      | 'text-inverse'
+      | 'interactive'
+      | 'link'
+      | 'success'
+      | 'warning'
+      | 'error'
   }>(),
   {
     size: 'md',
     stroke: 'regular',
+    color: 'inherit',
   },
 )
 
@@ -28,6 +40,7 @@ const classes = computed(() => [
   'axis-icon',
   `axis-icon--${props.size}`,
   `axis-icon--stroke-${props.stroke}`,
+  props.color !== 'inherit' ? `axis-icon--color-${props.color}` : undefined,
 ])
 </script>
 
@@ -72,5 +85,41 @@ const classes = computed(() => [
 
 .axis-icon--stroke-strong :deep(svg) {
   stroke-width: var(--axis-icon-stroke-width-strong);
+}
+
+.axis-icon--color-text {
+  color: var(--axis-color-text-primary);
+}
+
+.axis-icon--color-text-secondary {
+  color: var(--axis-color-text-secondary);
+}
+
+.axis-icon--color-text-disabled {
+  color: var(--axis-color-text-disabled);
+}
+
+.axis-icon--color-text-inverse {
+  color: var(--axis-color-text-inverse);
+}
+
+.axis-icon--color-interactive {
+  color: var(--axis-color-interactive-primary);
+}
+
+.axis-icon--color-link {
+  color: var(--axis-color-text-link);
+}
+
+.axis-icon--color-success {
+  color: var(--axis-color-feedback-success);
+}
+
+.axis-icon--color-warning {
+  color: var(--axis-color-feedback-warning);
+}
+
+.axis-icon--color-error {
+  color: var(--axis-color-feedback-error);
 }
 </style>

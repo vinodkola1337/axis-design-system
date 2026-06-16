@@ -187,6 +187,8 @@ PrimeVue unstyled mode provides accessibility, keyboard navigation, and ARIA for
 
 Axis uses `@lucide/vue` as the standard product icon library through the Axis `Icon` component. Lucide owns the SVG paths; Axis owns presentation through tokens. Icons inherit `currentColor` by default and use `--axis-icon-*` component tokens for size and stroke treatment.
 
+Icon supports a small `color` prop for common standalone semantic intent, such as `success`, `warning`, `error`, `interactive`, and text roles. These aliases map to existing exported semantic color tokens and do not create new color values. Consumers should still prefer inherited color for icons inside controls or text; the prop is for standalone status or emphasis icons that would otherwise need inline color styles.
+
 Product code should pass imported Lucide components to `Icon` with the `icon` prop, such as `<Icon :icon="Search" />`. A string-name registry is intentionally deferred until the icon vocabulary stabilizes; direct imports keep the API low-maintenance and tree-shakable.
 
 Icon keeps accessibility behavior lightweight: native attributes fall through to the root element, and the internal SVG is marked `aria-hidden`. Standalone meaningful icons can pass attributes such as `role="img"` with `aria-label` or `aria-labelledby`; icons inside controls rely on the owning control's accessible name.

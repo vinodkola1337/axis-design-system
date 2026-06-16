@@ -1,0 +1,59 @@
+import { Meta } from '@storybook/addon-docs/blocks'
+
+<Meta title="Styles/Accessibility" />
+
+# Accessibility
+
+## Overview
+
+Axis aims to meet **WCAG 2.2 Level AA** as the baseline for components, documentation examples, and custom UI built with Axis tokens. Use this page for shared expectations; component and style pages document details that depend on a specific API, token, or visual decision.
+
+```html
+<!-- Prefer native semantics. -->
+<button type="button">Save changes</button>
+
+<!-- Add ARIA only when native HTML cannot express the relationship or state. -->
+<input
+  id="email"
+  name="email"
+  type="email"
+  aria-describedby="email-help"
+/>
+<p id="email-help">Use your work email address.</p>
+```
+
+## General Guidance
+
+| Concern | Axis guidance |
+|---|---|
+| Semantics | Start with native HTML. Use WAI-ARIA Authoring Practices only for complex custom patterns that native elements cannot express. |
+| Keyboard | Interactive UI must be reachable and operable with the keyboard. Avoid custom interaction patterns unless the keyboard behavior is also defined. |
+| Focus | Interactive elements must have a visible focus indicator. Axis components use focus ring tokens such as `--axis-button-focus-ring-width` and `--axis-color-border-focus`. |
+| Labels | Form controls need persistent accessible labels. Placeholder text is not a replacement for a label. |
+| Names | Icon-only controls and meaningful standalone icons need accessible names. Decorative icons should be hidden from assistive technology. |
+| State | Do not rely on color, opacity, shape, or icon-only treatment alone. Pair important states with text, ARIA, or component state. |
+| Disabled UI | Disabled controls should be visually muted and programmatically disabled when the HTML element supports it. |
+| Target size | Prefer Axis component sizes for interactive controls. Small controls should still remain easy to target in dense UI. |
+| Motion | When motion is introduced, keep it purposeful and respect reduced-motion preferences. |
+| Content | Error text, helper text, empty states, and status messages should be clear, specific, and placed near the related UI. |
+
+## Specific Guidance
+
+Keep specific accessibility guidance close to the decision:
+
+- Component docs cover keyboard behavior, labeling, state communication, disabled behavior, and any ARIA considerations for that component.
+- Colors documents contrast, semantic status colors, disabled opacity, and avoiding color-only communication.
+- Typography documents readable type hierarchy, semantic headings, line height, and long-form copy.
+- Icons documents decorative versus meaningful icons, accessible names, and status icon usage.
+
+## Quick Checks
+
+Use these checks when building custom UI with Axis:
+
+- Can the UI be used without a mouse?
+- Is the focus indicator visible?
+- Does every form control have a label?
+- Is important state communicated without relying on color alone?
+- Do icon-only controls have accessible names?
+- Are disabled controls actually disabled where the platform supports it?
+- Is the reading order logical with headings and landmarks?

@@ -38,6 +38,8 @@ Update status inline as work completes: `[ ]` → `[x]`.
 - [x] Add consolidated Styles/Icons documentation for Lucide usage, Axis token guidance, Icon API, and accessibility
 - [x] Add Styles/Colors documentation showing primitive and semantic color tokens with component-token guidance
 - [x] Add Styles/Typography documentation showing font families, type scale, weights, line heights, and role guidance
+- [x] Add Styles/Spacing & Shape documentation showing spacing, radius, and border width tokens
+- [x] Add Styles/Accessibility documentation covering WCAG 2.2 AA baseline, native semantics, shared accessibility expectations, and component-specific guidance boundaries
 - [x] Add optional `@vinodkola/axis-ui/base.css` for app-level typography defaults and type role classes
 - [x] Establish a reusable component documentation template covering Overview with an untitled common example, Usage, Variants, API, and Accessibility
 - [ ] Add interactive Controls panels for public component props using typed `args` and `argTypes`, including sensible controls, options, defaults, descriptions, and disabled controls for non-editable values

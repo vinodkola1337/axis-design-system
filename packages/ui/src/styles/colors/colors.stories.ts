@@ -19,6 +19,13 @@ type ColorToken = {
   group: string
 }
 
+type OpacityToken = {
+  name: string
+  cssVar: string
+  value: string
+  usage: string
+}
+
 const tokenGridStyle = `
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(min(100%, 320px), 1fr));
@@ -78,6 +85,13 @@ const flattenColorTokens = (
 const primitiveColors = flattenColorTokens((primitiveTokens as TokenNode).color as TokenNode, ['color'])
 const semanticColors = flattenColorTokens((semanticTokens as TokenNode).color as TokenNode, ['color'])
 
+const disabledOpacity: OpacityToken = {
+  name: 'opacity.disabled',
+  cssVar: '--axis-opacity-disabled',
+  value: String((((semanticTokens as TokenNode).opacity as TokenNode).disabled as TokenNode).$value),
+  usage: 'Disabled visual treatment for custom UI when an Axis component is not available.',
+}
+
 const groupedPrimitiveColors = primitiveColors.reduce<Record<string, ColorToken[]>>((groups, token) => {
   groups[token.group] = [...(groups[token.group] ?? []), token]
   return groups
@@ -102,9 +116,9 @@ export const UsageExample: Story = {
   parameters: {
     docs: {
       source: {
-        code: `<Icon :icon="Info" style="color: var(--axis-color-interactive-primary);" />
-<Icon :icon="Check" style="color: var(--axis-color-feedback-success);" />
-<Icon :icon="AlertTriangle" style="color: var(--axis-color-feedback-warning);" />`,
+        code: `<Icon :icon="Info" color="interactive" />
+<Icon :icon="Check" color="success" />
+<Icon :icon="AlertTriangle" color="warning" />`,
       },
     },
   },
@@ -121,21 +135,21 @@ export const UsageExample: Story = {
         style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr)); gap: var(--axis-spacing-3); width: 100%;"
       >
         <div style="display: flex; align-items: center; gap: var(--axis-spacing-3); padding: var(--axis-spacing-4); border: var(--axis-border-width-1) solid var(--axis-color-border-default); border-radius: var(--axis-border-radius-lg); background: var(--axis-color-surface-default); color: var(--axis-color-text-primary);">
-          <Icon :icon="Info" size="lg" style="color: var(--axis-color-interactive-primary);" />
+          <Icon :icon="Info" size="lg" color="interactive" />
           <span style="display: grid; gap: var(--axis-spacing-1);">
             <strong style="font-size: var(--axis-font-size-sm);">Interactive</strong>
             <code style="color: var(--axis-color-text-secondary); font-size: var(--axis-font-size-xs);">--axis-color-interactive-primary</code>
           </span>
         </div>
         <div style="display: flex; align-items: center; gap: var(--axis-spacing-3); padding: var(--axis-spacing-4); border: var(--axis-border-width-1) solid var(--axis-color-border-default); border-radius: var(--axis-border-radius-lg); background: var(--axis-color-feedback-success-subtle); color: var(--axis-color-text-primary);">
-          <Icon :icon="Check" size="lg" style="color: var(--axis-color-feedback-success);" />
+          <Icon :icon="Check" size="lg" color="success" />
           <span style="display: grid; gap: var(--axis-spacing-1);">
             <strong style="font-size: var(--axis-font-size-sm);">Success</strong>
             <code style="color: var(--axis-color-text-secondary); font-size: var(--axis-font-size-xs);">--axis-color-feedback-success</code>
           </span>
         </div>
         <div style="display: flex; align-items: center; gap: var(--axis-spacing-3); padding: var(--axis-spacing-4); border: var(--axis-border-width-1) solid var(--axis-color-border-default); border-radius: var(--axis-border-radius-lg); background: var(--axis-color-feedback-warning-subtle); color: var(--axis-color-text-primary);">
-          <Icon :icon="AlertTriangle" size="lg" style="color: var(--axis-color-feedback-warning);" />
+          <Icon :icon="AlertTriangle" size="lg" color="warning" />
           <span style="display: grid; gap: var(--axis-spacing-1);">
             <strong style="font-size: var(--axis-font-size-sm);">Warning</strong>
             <code style="color: var(--axis-color-text-secondary); font-size: var(--axis-font-size-xs);">--axis-color-feedback-warning</code>
@@ -222,6 +236,44 @@ export const SemanticTokenList: Story = {
             <code style="color: var(--axis-color-text-secondary); font-size: var(--axis-font-size-xs);">{{ token.cssVar }}</code>
             <code style="color: var(--axis-color-text-secondary); font-size: var(--axis-font-size-xs);">{{ token.value }}</code>
           </span>
+        </div>
+      </div>
+    `,
+  }),
+}
+
+export const DisabledOpacity: Story = {
+  tags: ['!dev'],
+  parameters: {
+    docs: {
+      canvas: {
+        sourceState: 'none',
+      },
+    },
+  },
+  render: () => ({
+    setup: () => ({
+      disabledOpacity,
+    }),
+    template: `
+      <div class="axis-color-token-docs" style="display: grid; width: 100%; overflow-x: auto; border: var(--axis-border-width-1) solid var(--axis-color-border-default); border-radius: var(--axis-border-radius-lg); background: var(--axis-color-surface-default);">
+        <div style="display: grid; grid-template-columns: minmax(9rem, 0.8fr) minmax(9rem, 0.8fr) minmax(12rem, 1.2fr); gap: var(--axis-spacing-4); width: 100%; min-width: 34rem; padding: var(--axis-spacing-3) var(--axis-spacing-4); color: var(--axis-color-text-secondary); font-size: var(--axis-font-size-xs); font-weight: var(--axis-font-weight-semibold); line-height: var(--axis-font-line-height-tight); text-transform: uppercase;">
+          <span>Token</span>
+          <span>Sample</span>
+          <span>Use for</span>
+        </div>
+        <div style="display: grid; grid-template-columns: minmax(9rem, 0.8fr) minmax(9rem, 0.8fr) minmax(12rem, 1.2fr); gap: var(--axis-spacing-4); align-items: center; width: 100%; min-width: 34rem; padding: var(--axis-spacing-4); border-block-start: var(--axis-border-width-1) solid var(--axis-color-border-default);">
+          <span style="display: grid; gap: var(--axis-spacing-1); min-width: 0; overflow-wrap: anywhere;">
+            <strong style="color: var(--axis-color-text-primary); font-size: var(--axis-font-size-sm);">{{ disabledOpacity.name }}</strong>
+            <code style="color: var(--axis-color-text-secondary); font-size: var(--axis-font-size-xs);">{{ disabledOpacity.cssVar }}</code>
+            <code style="color: var(--axis-color-text-secondary); font-size: var(--axis-font-size-xs);">{{ disabledOpacity.value }}</code>
+          </span>
+          <span style="display: flex; align-items: center; min-width: 0;">
+            <span style="display: inline-flex; align-items: center; min-height: var(--axis-button-size-md-height); padding: 0 var(--axis-spacing-4); border: var(--axis-border-width-1) solid var(--axis-color-border-default); border-radius: var(--axis-button-border-radius); background: var(--axis-color-background-subtle); color: var(--axis-color-text-primary); font-size: var(--axis-font-size-base); font-weight: var(--axis-button-font-weight); opacity: var(--axis-opacity-disabled);">
+              Disabled
+            </span>
+          </span>
+          <span style="color: var(--axis-color-text-secondary); font-size: var(--axis-font-size-sm); line-height: var(--axis-font-line-height-normal);">{{ disabledOpacity.usage }}</span>
         </div>
       </div>
     `,

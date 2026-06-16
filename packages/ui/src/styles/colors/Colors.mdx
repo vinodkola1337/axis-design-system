@@ -46,6 +46,12 @@ Primitive colors are source values for semantic tokens. They are documented so d
 
 <Canvas of={Stories.PrimitivePalette} />
 
+## Disabled Opacity
+
+Disabled opacity is documented with color because it affects visual state and contrast. Use component disabled props first. Reach for `--axis-opacity-disabled` only when building custom UI that is not covered by an Axis component.
+
+<Canvas of={Stories.DisabledOpacity} />
+
 ## Accessibility
 
 Do not rely on color alone to communicate status. Pair error, warning, and success color with text, icons, or state labels. When adding or changing semantic tokens, check contrast for the intended text and surface pairing before the token becomes part of the public API.
