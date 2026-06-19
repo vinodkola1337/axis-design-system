@@ -133,6 +133,25 @@ export const IconExamples: Story = {
   }),
 }
 
+export const IconOnly: Story = {
+  args: {
+    icon: Search,
+    label: '',
+  },
+  render: (args) => ({
+    components: { Button },
+    setup: () => ({ args }),
+    template: `
+      <Button
+        aria-label="Search"
+        :icon="args.icon"
+        :size="args.size"
+        :type="args.type"
+      />
+    `,
+  }),
+}
+
 export const Severities: Story = {
   tags: ['!dev'],
   parameters: {

@@ -30,7 +30,7 @@
       "primary-subtle": { "$value": "{color.blue.50}",  "$type": "color" }
     },
     "feedback": {
-      "error":          { "$value": "{color.red.500}",   "$type": "color" },
+      "error":          { "$value": "{color.red.600}",   "$type": "color" },
       "error-hover":    { "$value": "{color.red.700}",   "$type": "color" },
       "error-active":   { "$value": "{color.red.800}",   "$type": "color" },
       "error-subtle":   { "$value": "{color.red.50}",    "$type": "color" },

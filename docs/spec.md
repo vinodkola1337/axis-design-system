@@ -34,6 +34,7 @@ Update status inline as work completes: `[ ]` → `[x]`.
 - [x] `packages/docs` wired — token CSS imported globally, UI stories colocated with component source and discovered by Storybook
 - [x] Stories for Button and TextInput (variants + states visible in browser)
 - [x] Upgrade to Storybook 10 and configure Docs plus core Controls, Actions, and viewport testing
+- [x] Add Storybook accessibility audits with Vitest browser automation and verify Button semantics, accessible naming, target sizing, focus visibility, and color contrast
 - [x] Enable Storybook Docs' native table of contents globally for documentation section headings
 - [x] Add consolidated Styles/Icons documentation for Lucide usage, Axis token guidance, Icon API, and accessibility
 - [x] Add Styles/Colors documentation showing primitive and semantic color tokens with component-token guidance

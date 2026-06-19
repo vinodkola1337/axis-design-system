@@ -3,10 +3,11 @@ import remarkGfm from 'remark-gfm'
 
 const config: StorybookConfig = {
   stories: [
-    '../../ui/src/**/*.mdx',
+    '../../ui/src/**/[A-Z]*.mdx',
     '../../ui/src/**/*.stories.@(js|jsx|mjs|ts|tsx)',
   ],
   addons: [
+    '@storybook/addon-a11y',
     {
       name: '@storybook/addon-docs',
       options: {
@@ -17,6 +18,7 @@ const config: StorybookConfig = {
         },
       },
     },
+    '@storybook/addon-vitest',
   ],
   framework: {
     name: '@storybook/vue3-vite',

@@ -269,9 +269,9 @@ export const DisabledOpacity: Story = {
             <code style="color: var(--axis-color-text-secondary); font-size: var(--axis-font-size-xs);">{{ disabledOpacity.value }}</code>
           </span>
           <span style="display: flex; align-items: center; min-width: 0;">
-            <span style="display: inline-flex; align-items: center; min-height: var(--axis-button-size-md-height); padding: 0 var(--axis-spacing-4); border: var(--axis-border-width-1) solid var(--axis-color-border-default); border-radius: var(--axis-button-border-radius); background: var(--axis-color-background-subtle); color: var(--axis-color-text-primary); font-size: var(--axis-font-size-base); font-weight: var(--axis-button-font-weight); opacity: var(--axis-opacity-disabled);">
+            <button disabled type="button" style="display: inline-flex; align-items: center; min-height: var(--axis-button-size-md-height); padding: 0 var(--axis-spacing-4); border: var(--axis-border-width-1) solid var(--axis-color-border-default); border-radius: var(--axis-button-border-radius); background: var(--axis-color-background-subtle); color: var(--axis-color-text-primary); font-family: inherit; font-size: var(--axis-font-size-base); font-weight: var(--axis-button-font-weight); opacity: var(--axis-opacity-disabled);">
               Disabled
-            </span>
+            </button>
           </span>
           <span style="color: var(--axis-color-text-secondary); font-size: var(--axis-font-size-sm); line-height: var(--axis-font-line-height-normal);">{{ disabledOpacity.usage }}</span>
         </div>

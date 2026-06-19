@@ -7,6 +7,7 @@
     "build": "pnpm run tokens:build && pnpm --filter @vinodkola/axis-ui build",
     "dev": "pnpm --filter @vinodkola/axis-ui dev",
     "storybook": "pnpm --filter @axis/docs storybook",
-    "storybook:build": "pnpm run tokens:build && pnpm --filter @axis/docs build-storybook"
+    "storybook:build": "pnpm run tokens:build && pnpm --filter @axis/docs build-storybook",
+    "storybook:test": "pnpm run tokens:build && pnpm --filter @axis/docs test-storybook"
   }
 }
