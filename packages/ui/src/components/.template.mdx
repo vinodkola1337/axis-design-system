@@ -57,6 +57,25 @@ Name the prop that controls the disabled state and briefly explain its effect.
 
 <ArgTypes />
 
+{/*
+  Component author checklist (not rendered):
+
+  - Document public events by their canonical Vue names: click, focus, blur,
+    update:modelValue, and so on. Consumers use @event in templates; onEvent is
+    the listener-prop form used by JSX and Storybook internals.
+  - Use explicit fn() args for the Actions panel, but hide onEvent handler args
+    from this table with table.disable: true. Describe only the canonical event
+    row under the Events category to avoid duplicate Events sections.
+  - Keep native listener fallthrough when the native element is the component
+    root. Declare typed emits only for component-owned events or events forwarded
+    from an inner element.
+  - Document every public slot with a typed defineSlots entry and a JSDoc
+    description. Vue instance metadata such as $slots is excluded globally.
+  - Use a story-only args type when documentation rows or action handlers are not
+    declared component props. Do not change the runtime component API solely to
+    satisfy Storybook metadata.
+*/}
+
 ## Accessibility
 
 ### Screen Reader

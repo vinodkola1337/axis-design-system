@@ -9,7 +9,7 @@
 
 <script setup lang="ts">
 import type { Component } from 'vue'
-import { computed, useSlots } from 'vue'
+import { computed } from 'vue'
 import AxisIcon from '../icon/Icon.vue'
 
 defineOptions({
@@ -37,7 +37,10 @@ const props = withDefaults(
   },
 )
 
-const slots = useSlots()
+const slots = defineSlots<{
+  /** Custom button content rendered when the label prop is not provided. */
+  default(): unknown
+}>()
 
 const hasVisibleLabel = computed(() => Boolean(props.label || slots.default))
 const isIconOnly = computed(() => Boolean(props.icon && !hasVisibleLabel.value))

@@ -26,6 +26,9 @@ const config: StorybookConfig = {
       docgen: 'vue-component-meta',
     },
   },
+  features: {
+    interactions: false,
+  },
 }
 
 export default config

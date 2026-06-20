@@ -5,7 +5,7 @@ Token-driven, scalable UI system. Tokens are the single source of truth for desi
 ## Stack
 
 - Vue 3 + TypeScript
-- Storybook 8
+- Storybook 10
 - Tailwind CSS
 - Style Dictionary for token transforms
 - Tokens Studio for Figma token editing
@@ -72,3 +72,13 @@ Token-driven, scalable UI system. Tokens are the single source of truth for desi
 - Prefer tokenized styling and CSS variables over local one-off values.
 - Order Vue single-file component blocks as `<template>`, then `<script setup lang="ts">`, then `<style scoped>`.
 - Avoid unrelated refactors while implementing feature or migration work.
+
+## Storybook API Documentation
+
+- Document canonical Vue event names in public API tables, such as `click`, `focus`, `blur`, and `update:modelValue`. Do not document Storybook handler args such as `onClick` or `onFocus` as separate public events.
+- Use explicit `fn()` handler args to populate the Actions panel. Hide those `onX` args from ArgTypes with `table.disable: true`, then document the canonical event row under the `Events` category.
+- Do not duplicate events discovered by Vue docgen. Override the canonical row when it needs a description or clearer payload type.
+- Preserve native listener fallthrough when a component has the corresponding native element as its root. For example, Button supports Vue `@click` through its root `<button>` and does not need to declare and re-emit `click`.
+- Declare typed component emits when an event is component-owned or must be forwarded from an inner element, such as TextInput `focus`, `blur`, and `update:modelValue`.
+- Document slots with typed `defineSlots` entries and JSDoc descriptions. Show the named slot in the API table, but exclude generated Vue instance metadata such as `$slots` globally in Storybook preview configuration.
+- Use a story-only args type when Storybook handlers or canonical documentation rows are not part of the component's declared props. Keep the component's runtime API unchanged for documentation-only concerns.

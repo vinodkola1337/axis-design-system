@@ -4,7 +4,7 @@ import '../../ui/src/styles/base.css'
 import '../../ui/src/styles/main.css'
 import './preview.css'
 
-const vueFrameworkArgTypes = ['key', 'ref', 'ref_for', 'ref_key', 'class', 'style']
+const vueFrameworkArgTypes = ['key', 'ref', 'ref_for', 'ref_key', 'class', 'style', '$slots']
 
 const preview: Preview = {
   decorators: [

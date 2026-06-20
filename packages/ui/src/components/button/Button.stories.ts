@@ -1,6 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
 import { Search } from '@lucide/vue'
+import { fn } from 'storybook/test'
 import Button from './Button.vue'
+
+type ButtonStoryArgs = InstanceType<typeof Button>['$props'] & {
+  click?: [event: MouseEvent]
+  onClick: (event: MouseEvent) => void
+}
 
 const iconOptions = {
   none: undefined,
@@ -16,6 +22,7 @@ const meta = {
     icon: undefined,
     iconPosition: 'start',
     label: 'Button',
+    onClick: fn(),
     severity: 'primary',
     size: 'md',
     type: 'button',
@@ -26,6 +33,20 @@ const meta = {
       description: 'Visible button label. Prefer this prop for standard text buttons.',
       table: {
         type: { summary: 'string' },
+      },
+    },
+    onClick: {
+      control: false,
+      table: {
+        disable: true,
+      },
+    },
+    click: {
+      control: false,
+      description: 'The native click event forwarded by the underlying button.',
+      table: {
+        category: 'Events',
+        type: { summary: '[event: MouseEvent]' },
       },
     },
     icon: {
@@ -96,13 +117,14 @@ const meta = {
         :icon="args.icon"
         :icon-position="args.iconPosition"
         :label="args.label"
+        @click="args.onClick"
         :severity="args.severity"
         :size="args.size"
         :type="args.type"
       />
     `,
   }),
-} satisfies Meta<typeof Button>
+} satisfies Meta<ButtonStoryArgs>
 
 export default meta
 type Story = StoryObj<typeof meta>
@@ -138,6 +160,7 @@ export const IconOnly: Story = {
     icon: Search,
     label: '',
   },
+  tags: ['!dev'],
   render: (args) => ({
     components: { Button },
     setup: () => ({ args }),

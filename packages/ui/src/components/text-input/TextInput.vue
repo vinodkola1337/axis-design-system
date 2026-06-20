@@ -35,6 +35,8 @@
         :autocomplete="autocomplete"
         :aria-invalid="isInvalid || undefined"
         :aria-describedby="describedBy"
+        @focus="emit('focus', $event)"
+        @blur="emit('blur', $event)"
       />
     </div>
 
@@ -85,6 +87,10 @@ const props = withDefaults(
 )
 
 const model = defineModel<string>()
+const emit = defineEmits<{
+  focus: [event: FocusEvent]
+  blur: [event: FocusEvent]
+}>()
 const instance = getCurrentInstance()
 const slots = useSlots()
 

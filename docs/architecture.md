@@ -306,7 +306,13 @@ Custom MDX pages attach to colocated story metadata with Storybook's `Meta` bloc
 
 Storybook globally excludes Vue framework metadata (`key`, `ref`, `ref_for`, and `ref_key`) plus generic `class` and `style` fallthrough attributes from Controls and generated ArgTypes tables. These values are not component-owned public API; native attribute fallthrough is described in prose where relevant.
 
+The public Storybook keeps Actions visible for manual event and payload inspection, while the integrated Interactions panel stays disabled until stories include meaningful `play` tests. Vitest and accessibility automation remain enabled independently; the panel should return when its execution trace provides useful consumer or reviewer evidence rather than an empty portfolio surface.
+
 API tables use Storybook Doc Blocks and Vue metadata so props, slots, and emitted events are not duplicated manually. Accessibility always covers screen-reader behavior and keyboard support. Component-level version history is excluded; release history belongs in the future package changelog and standalone Release Notes page.
+
+Public event documentation uses canonical Vue event names (`click`, `focus`, `blur`, and `update:modelValue`), not listener-prop names (`onClick`, `onFocus`, or `onUpdate:modelValue`). Stories still use explicit `fn()` listener args so Actions can record interactions, but those handler args are hidden from ArgTypes and the canonical event row owns the description and payload type. Vue docgen-discovered events are overridden rather than duplicated. Native events continue to fall through when the component root is the corresponding native element; Axis only declares emits for component-owned behavior or for events forwarded from an inner element.
+
+Public slots are declared with typed `defineSlots` entries and JSDoc descriptions so Doc Blocks can generate useful slot rows. Generated Vue instance surfaces such as `$slots` are implementation metadata, not consumer API, and are excluded globally in Storybook preview configuration. Story-only args types may extend inferred component props for Actions handlers and documentation rows without changing the runtime component contract.
 
 Because MDX files live in `packages/ui` while Storybook dependencies live in private `packages/docs`, the docs Vite config resolves the Doc Blocks entrypoint from the host package. It also normalizes Storybook's generated `file://` MDX imports on Windows. This preserves package boundaries without adding Storybook runtime dependencies to the published UI package.
 

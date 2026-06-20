@@ -34,6 +34,7 @@ Update status inline as work completes: `[ ]` → `[x]`.
 - [x] `packages/docs` wired — token CSS imported globally, UI stories colocated with component source and discovered by Storybook
 - [x] Stories for Button and TextInput (variants + states visible in browser)
 - [x] Upgrade to Storybook 10 and configure Docs plus core Controls, Actions, and viewport testing
+- [x] Hide the empty Interactions panel until stories include meaningful `play` tests, while retaining Vitest automation
 - [x] Add Storybook accessibility audits with Vitest browser automation and verify Button semantics, accessible naming, target sizing, focus visibility, and color contrast
 - [x] Enable Storybook Docs' native table of contents globally for documentation section headings
 - [x] Add consolidated Styles/Icons documentation for Lucide usage, Axis token guidance, Icon API, and accessibility
@@ -47,6 +48,7 @@ Update status inline as work completes: `[ ]` → `[x]`.
 - [x] Add complete Button documentation using the component documentation template
 - [ ] Add complete TextInput documentation using the component documentation template
 - [ ] Document component slots and emitted events alongside props where applicable
+  - Button native `click` and TextInput `update:modelValue`, `focus`, and `blur` are documented in Storybook API metadata
 - [ ] Verify Storybook Docs pages and interactive controls in the browser and production build
 
 ---

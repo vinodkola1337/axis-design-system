@@ -1,5 +1,12 @@
 import type { Meta, StoryObj } from '@storybook/vue3-vite'
+import { fn } from 'storybook/test'
 import TextInput from './TextInput.vue'
+
+type TextInputStoryArgs = InstanceType<typeof TextInput>['$props'] & {
+  blur?: [event: FocusEvent]
+  focus?: [event: FocusEvent]
+  'update:modelValue'?: [value: string]
+}
 
 const meta = {
   title: 'Components/TextInput',
@@ -11,6 +18,9 @@ const meta = {
     fluid: true,
     invalid: false,
     label: 'Email address',
+    onBlur: fn(),
+    onFocus: fn(),
+    'onUpdate:modelValue': fn(),
     placeholder: 'name@example.com',
     readonly: false,
     required: false,
@@ -18,6 +28,48 @@ const meta = {
     type: 'email',
   },
   argTypes: {
+    'onUpdate:modelValue': {
+      control: false,
+      table: {
+        disable: true,
+      },
+    },
+    onFocus: {
+      control: false,
+      table: {
+        disable: true,
+      },
+    },
+    onBlur: {
+      control: false,
+      table: {
+        disable: true,
+      },
+    },
+    'update:modelValue': {
+      control: false,
+      description: 'Emitted with the current value whenever the user edits the input.',
+      table: {
+        category: 'Events',
+        type: { summary: '[value: string]' },
+      },
+    },
+    focus: {
+      control: false,
+      description: 'Emitted when the inner input receives focus.',
+      table: {
+        category: 'Events',
+        type: { summary: '[event: FocusEvent]' },
+      },
+    },
+    blur: {
+      control: false,
+      description: 'Emitted when the inner input loses focus.',
+      table: {
+        category: 'Events',
+        type: { summary: '[event: FocusEvent]' },
+      },
+    },
     size: {
       control: 'select',
       options: ['sm', 'md', 'lg'],
@@ -36,7 +88,7 @@ const meta = {
       </div>
     `,
   }),
-} satisfies Meta<typeof TextInput>
+} satisfies Meta<TextInputStoryArgs>
 
 export default meta
 type Story = StoryObj<typeof meta>
