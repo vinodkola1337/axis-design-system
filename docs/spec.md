@@ -1,75 +1,26 @@
-# Axis Design System — Project Spec
+# Axis Design System - Project Status
 
-Spec-driven progress tracker. Read this before asking about project state — do not scan the codebase to reconstruct it.
+Read this file before implementation work. It is the progress source of truth; do not reconstruct project status by scanning the codebase. Architecture and authoring guidance belong in their dedicated documents.
 
-Update status inline as work completes: `[ ]` → `[x]`.
+## Current State
 
----
+- [x] Monorepo, token build pipeline, UI package, and Storybook 10 documentation app are established.
+- [x] The three-tier token model (primitive, semantic, and component) is in use.
+- [x] Button, Icon, TextInput, and Label are implemented and tokenized.
+- [x] Core Storybook foundations, system style documentation, accessibility tests, and the component documentation template are established.
+- [x] Button documentation is complete.
 
-## Phase 0 — Foundation
+## In Progress
 
-- [x] Monorepo scaffolded (pnpm workspace, three packages)
-- [x] `packages/tokens` — Style Dictionary pipeline wired, three-tier token model (primitive → semantic → component), `dist/tokens.css` + `dist/index.js` generated
+- [ ] Add complete TextInput documentation using the component documentation template.
+- [ ] Complete interactive Controls for public component props.
+- [ ] Complete slot and emitted-event documentation where applicable.
+- [ ] Verify Storybook Docs pages and Controls in the browser and production build.
 
----
+## Roadmap
 
-## Phase 1 — UI Package Infrastructure
-
-- [x] `packages/ui` — Vite lib config (`vite.config.ts`), `tsconfig.json`, `src/` directory structure (`/components/<component>` folders + `index.ts` barrel)
-- [x] Tailwind v4 installed and configured in `packages/ui`, consuming axis-tokens CSS custom properties via `@theme` directive
-
----
-
-## Phase 2 — Atom Components (from scratch)
-
-- [x] `Button` — filled / outlined / text emphasis, primary / danger severity, sizes, inferred icon-only mode, disabled state; uses `--axis-button-*` tokens
-- [x] `Icon` - Lucide-compatible component prop API, tokenized sizes / stroke weights, decorative and meaningful accessibility behavior; uses `--axis-icon-*` tokens
-- [x] `TextInput` — text-like input, sizes, fluid mode, label prop / slot, float label, error state; uses `--axis-text-input-*` tokens
-- [x] `Label` — standalone label atom; required / disabled states; uses `--axis-label-*` tokens
-
----
-
-## Phase 3 — Storybook
-
-- [x] `packages/docs` wired — token CSS imported globally, UI stories colocated with component source and discovered by Storybook
-- [x] Stories for Button and TextInput (variants + states visible in browser)
-- [x] Upgrade to Storybook 10 and configure Docs plus core Controls, Actions, and viewport testing
-- [x] Hide the empty Interactions panel until stories include meaningful `play` tests, while retaining Vitest automation
-- [x] Add Storybook accessibility audits with Vitest browser automation and verify Button semantics, accessible naming, target sizing, focus visibility, and color contrast
-- [x] Enable Storybook Docs' native table of contents globally for documentation section headings
-- [x] Add consolidated Styles/Icons documentation for Lucide usage, Axis token guidance, Icon API, and accessibility
-- [x] Add Styles/Colors documentation showing primitive and semantic color tokens with component-token guidance
-- [x] Add Styles/Typography documentation showing font families, type scale, weights, line heights, and role guidance
-- [x] Add Styles/Spacing & Shape documentation showing spacing, radius, and border width tokens
-- [x] Add Styles/Accessibility documentation covering WCAG 2.2 AA baseline, native semantics, shared accessibility expectations, and component-specific guidance boundaries
-- [x] Add optional `@vinodkola/axis-ui/base.css` for app-level typography defaults and type role classes
-- [x] Establish a reusable component documentation template covering Overview with an untitled common example, Usage, Variants, API, and Accessibility
-- [ ] Add interactive Controls panels for public component props using typed `args` and `argTypes`, including sensible controls, options, defaults, descriptions, and disabled controls for non-editable values
-- [x] Add complete Button documentation using the component documentation template
-- [ ] Add complete TextInput documentation using the component documentation template
-- [ ] Document component slots and emitted events alongside props where applicable
-  - Button native `click` and TextInput `update:modelValue`, `focus`, and `blur` are documented in Storybook API metadata
-- [ ] Verify Storybook Docs pages and interactive controls in the browser and production build
-
----
-
-## Phase 4 — Complex Components (PrimeVue unstyled)
-
-- [ ] PrimeVue installed in unstyled mode, PassThrough API pattern established, no default styles leaking
-- [ ] `Table` — sortable columns, row selection; Storybook story
-- [ ] `DatePicker` — single date + range; Storybook story
-- [ ] `Dialog` — modal with header / body / footer slots; Storybook story
-
----
-
-## Phase 5 — Theming
-
-- [ ] Dark mode — `[data-theme="dark"]` block in Style Dictionary output; all components flip with zero component changes; Storybook theme toggle
-
----
-
-## Phase 6 — Release
-
-- [ ] `@changesets/cli` configured for fixed synchronized versioning across `axis-tokens` and `axis-ui`
-- [ ] `0.1.0` published to npmjs.com under `@vinodkola` scope
-- [ ] Storybook deployed to Vercel
+- [ ] Establish PrimeVue in unstyled mode and build Table, DatePicker, and Dialog.
+- [ ] Add dark theme tokens and a Storybook theme toggle without component changes.
+- [ ] Configure Changesets with fixed versions for the public packages.
+- [ ] Publish `@vinodkola/axis-tokens` and `@vinodkola/axis-ui` version `0.1.0`.
+- [ ] Deploy Storybook to Vercel.

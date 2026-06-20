@@ -1,65 +1,57 @@
 # Axis Design System
 
-A token-driven, scalable UI system that aligns design, components, and application architecture into a single source of truth.
+Axis is a token-driven Vue 3 design system that keeps design decisions, reusable components, and documentation aligned through shared tokens.
 
----
+> Axis is currently pre-release. Public npm publication is tracked in `docs/spec.md`.
 
 ## Packages
 
-| Package | Description |
-|---|---|
-| `@vinodkola/axis-tokens` | Design tokens as CSS custom properties and JS constants |
-| `@vinodkola/axis-ui` | Vue 3 component library styled with axis tokens |
+| Package | Responsibility | Publication |
+|---|---|---|
+| `@vinodkola/axis-tokens` | Design tokens as CSS custom properties, JavaScript values, and TypeScript declarations | Public after first release |
+| `@vinodkola/axis-ui` | Vue components and shared styles | Public after first release |
+| `@axis/docs` | Storybook documentation and browser tests | Private |
 
----
-
-## Installation
+## Local Development
 
 ```bash
-npm install @vinodkola/axis-tokens @vinodkola/axis-ui
+pnpm install
+pnpm run storybook
 ```
 
----
+Useful commands:
 
-## Setup
-
-Two CSS files must be imported in your app entry point (`main.ts`), **in this order**:
-
-```ts
-import '@vinodkola/axis-tokens/dist/tokens.css'  // 1. token values
-import '@vinodkola/axis-ui/style.css'             // 2. component styles
+```bash
+pnpm run tokens:build     # Build token outputs
+pnpm run build            # Build tokens and UI packages
+pnpm run storybook:build  # Build the static Storybook site
+pnpm run storybook:test   # Run Storybook browser tests
 ```
 
-**Why order matters:** `axis-ui/style.css` contains CSS rules that reference token variables — for example, `.bg-interactive { background-color: var(--axis-color-interactive-primary) }`. Those variables are defined by `tokens.css`. If `tokens.css` hasn't loaded yet when the browser applies the component styles, every token-backed value renders as its unset fallback (usually transparent or invisible). Loading tokens first guarantees the variables exist before anything tries to use them.
+## Consumer Setup
 
-Then import and use components:
+After the first public release, applications will install the public packages together:
+
+```bash
+pnpm add @vinodkola/axis-tokens @vinodkola/axis-ui
+```
+
+Load token values before component styles. Application-level typography defaults are optional.
 
 ```ts
+import '@vinodkola/axis-tokens/dist/tokens.css'
+import '@vinodkola/axis-ui/base.css' // optional
+import '@vinodkola/axis-ui/style.css'
+
 import { Button } from '@vinodkola/axis-ui'
 ```
 
----
+`@vinodkola/axis-ui` requires Vue 3 as a peer dependency. Consumers receive compiled CSS and do not need to install Tailwind CSS.
 
-## Peer dependencies
+Dark-theme assets are not yet published. Theme implementation progress is tracked in the project status document.
 
-`@vinodkola/axis-ui` requires Vue 3 as a peer dependency — it is not bundled. Your app is expected to have Vue installed already.
+## Documentation
 
-```bash
-npm install vue
-```
-
-Tailwind CSS is **not** a peer dependency. It is a build-time tool used internally to generate `axis-ui/style.css`. Consumers receive pre-compiled plain CSS — no Tailwind installation required.
-
----
-
-## Theming
-
-Axis supports multiple themes via token overrides. Load the base tokens first, then a theme file to override the semantic layer:
-
-```ts
-import '@vinodkola/axis-tokens/dist/tokens.css'         // base (light)
-import '@vinodkola/axis-tokens/dist/theme-dark.css'     // dark mode overrides
-import '@vinodkola/axis-ui/style.css'
-```
-
-Only semantic tokens are overridden per theme — component code never changes.
+- [Project status](docs/spec.md)
+- [Architecture overview](docs/architecture/overview.md)
+- [Component documentation guide](docs/component-documentation.md)

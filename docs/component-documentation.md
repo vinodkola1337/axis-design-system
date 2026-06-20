@@ -1,12 +1,14 @@
 # Component Documentation Authoring Guide
 
-Axis component documentation is written in MDX and colocated with the component's stories. The complete Docs page is the component guideline; do not add a separate Guidelines section.
+Use this guide when creating or changing component stories, MDX pages, Controls, API tables, or accessibility documentation.
 
-Start from `packages/ui/src/components/.template.mdx`, copy it into the component folder, and replace the placeholder imports and content. Name the file after the component, for example `Button.mdx`.
+Start from `packages/ui/src/components/.template.mdx`, copy it into the component folder, and replace its placeholders. Name the MDX file after the component, such as `Button.mdx`.
 
-## Standard Structure
+Use `Button.mdx` and `Button.stories.ts` as the canonical reference when the template or this guide does not show enough detail.
 
-Use these sections in this order:
+## Required Page Structure
+
+Use these sections in order:
 
 1. Overview
 2. Usage
@@ -14,30 +16,25 @@ Use these sections in this order:
 4. API
 5. Accessibility
 
-Add a specialized section only when the component genuinely needs it. Keep guidance concise and focused on design decisions rather than documenting every implementation state.
+The Docs page is the complete component guideline; do not add a separate Guidelines section. Add another section only when the component genuinely needs it.
 
 ## Story And MDX Setup
 
-- Keep stories and MDX beside the component implementation.
-- Attach the MDX page to its story metadata with `<Meta of={Stories} />`.
-- Remove `autodocs` from the story metadata after adding a custom MDX page. This prevents duplicate Docs entries.
-- Keep individual stories in the sidebar for development.
-- Add grouped documentation stories for option families such as variants, sizes, and states. Embed those grouped stories in the Docs page instead of rendering every option in a separate Canvas.
-- Add `tags: ['!dev']` to grouped documentation stories so they remain available to MDX but do not appear as standalone sidebar entries.
-- Use Storybook Doc Blocks so examples remain interactive and API tables remain generated from Vue metadata.
-- Do not document Vue framework attributes such as `key`, `ref`, `ref_for`, or `ref_key` as component props. Generic `class` and `style` fall through to component roots but are also excluded globally because they are not component-owned API.
+- Keep the component, stories, and MDX in the same component folder.
+- Attach MDX to its story metadata with `<Meta of={Stories} />`.
+- Remove `autodocs` after adding custom MDX to prevent duplicate Docs entries.
+- Expose one sidebar story named `Playground`. It is the component's interactive workbench and supports every meaningful public prop through Controls.
+- Use `Playground` as the first Canvas after the Overview paragraph.
+- Treat every other story as a documentation or test helper. Mark it with `tags: ['!dev']` so it can be embedded in MDX without appearing in the sidebar.
+- Create grouped helper stories for option families such as variants, sizes, and states. Do not create a visible standalone story for every prop value.
+- Give helper stories a focused render and, when Storybook's generated source is noisy, a concise `parameters.docs.source.code` example that shows the intended consumer API.
+- Use Storybook Doc Blocks for interactive examples and generated API tables.
 
 ## Overview
 
-Write one short paragraph that explains the component's purpose and the kind of task it supports. Do not list variants, props, or implementation details here.
+Write one short paragraph explaining the component's purpose and the task it supports. Do not list props, variants, or implementation details.
 
-Example:
-
-> Button communicates an action that a user can take and gives that action an appropriate level of emphasis.
-
-## Common Example
-
-Immediately after the Overview paragraph, show one interactive `Canvas` using the most common configuration. Do not add a heading for this example. It should help a reader understand the component before they encounter detailed options.
+Immediately after the paragraph, render the most common configuration without adding another heading:
 
 ```mdx
 <Canvas of={Stories.Playground} />
@@ -45,92 +42,70 @@ Immediately after the Overview paragraph, show one interactive `Canvas` using th
 
 ## Usage
 
-Start with a short Vue import and usage example showing the most common component configuration. Follow it with three to five short best-practice bullets for broad principles. Use a bold lead-in so each recommendation is easy to scan, followed by one or two sentences of explanation.
+Include a short Vue import and usage example for the common configuration. Then add:
 
-Follow the bullets with a compact, two-column **Use / Avoid** table containing two or three concrete comparisons. Do not repeat every bullet in the table. Bullets explain principles; the table contrasts specific good and bad examples.
+- Three to five concise recommendations with bold lead-ins.
+- A reason tied to user outcomes, hierarchy, consistency, or accessibility.
+- A two-column **Use / Avoid** table with two or three concrete comparisons.
 
-Translate relevant Material Design principles into concise Axis-specific guidance rather than quoting Material documentation.
+Do not repeat every recommendation in the table. Translate relevant Material Design principles into Axis-specific guidance rather than quoting Material documentation.
 
-````mdx
-```vue
-<script setup lang="ts">
-import { Button } from '@vinodkola/axis-ui'
-</script>
-
-<template>
-  <Button label="Save changes" />
-</template>
-```
-
-- **Label actions clearly:** Use concise, action-oriented text in sentence case.
-- **Establish a clear hierarchy:** Reserve the highest emphasis for the main next step.
-````
-
-The docs host enables GitHub-Flavored Markdown through `remark-gfm`, so use concise pipe tables in component MDX:
-
-```mdx
-| Use | Avoid |
-|---|---|
-| Use a clear, action-oriented label. | Avoid vague labels such as "Click here." |
-```
+The docs host supports GitHub-Flavored Markdown, so use pipe tables instead of verbose HTML tables.
 
 ## Variants
 
-Group related options in one comparison Canvas, followed by a compact decision table. Introduce each option family with one sentence naming the prop that controls it and explaining what the prop changes.
+For each option family:
 
-```mdx
-### Emphasis
+1. Add a descriptive `h3` heading such as Emphasis, Severity, Sizes, or States.
+2. Name the controlling prop and explain what it changes in one sentence.
+3. Show one grouped comparison Canvas.
+4. Add a compact decision table explaining when to use each option.
 
-The `emphasis` prop controls the button's visual prominence.
+Document a supported disabled state here with its controlling prop and Canvas. Although disabled is an interaction state, placing it under Variants makes the available configurations discoverable.
 
-<Canvas of={Stories.Emphases} />
+## API Documentation
 
-| Emphasis | Use when |
-|---|---|
-| Filled | The action is the main next step in a focused area. |
-| Outlined | The action supports the main action and still needs clear affordance. |
-```
-
-Give each option family a descriptive `h3` heading, such as Severity, Sizes, or States. Use one grouped Canvas and one decision table per option family. Document disabled under Variants when the component supports it, with a one-line prop description and a disabled Canvas. Although disabled is an interaction state rather than a visual style variant, keeping it here makes the component's available configurations easier to discover.
-
-Grouped comparison stories are documentation helpers rather than isolated component states. Hide them from the development sidebar with the built-in `!dev` tag:
-
-```ts
-export const Severities: Story = {
-  tags: ['!dev'],
-  render: () => ({
-    // Render the grouped comparison used by the MDX Canvas.
-  }),
-}
-```
-
-## API
-
-Render generated API information with `ArgTypes`. Props, slots, and emitted events should come from Vue component metadata rather than hand-maintained Markdown tables.
+Render API metadata with Storybook's `ArgTypes` block:
 
 ```mdx
 <ArgTypes />
 ```
 
-Keep component types and story metadata accurate so the generated tables remain the source of truth.
+Props, slots, and emitted events come from Vue component metadata rather than hand-maintained Markdown tables.
+
+### Props And Controls
+
+- Define component defaults in metadata `args` so `Playground` opens in the common configuration.
+- Use typed story `args` and `argTypes` for every meaningful public component prop supported by `Playground`.
+- Bind controlled args and Action handlers explicitly in the metadata render function so Playground changes are reflected by the component.
+- Choose a sensible control type and define `options` for constrained values.
+- Use `mapping` when a friendly control value must resolve to a complex runtime value, such as a Vue icon component.
+- Document descriptions and defaults consistently with the component's runtime API.
+- Disable Controls for values that are not meaningfully editable in Storybook.
+- Exclude Vue framework metadata such as `key`, `ref`, `ref_for`, and `ref_key`. Generic `class` and `style` are fallthrough attributes, not component-owned props, and are excluded globally.
+
+### Events And Actions
+
+- Document canonical Vue event names such as `click`, `focus`, `blur`, and `update:modelValue`; do not present Storybook handler args such as `onClick` or `onFocus` as separate public events.
+- Use explicit `fn()` handler args to populate Actions. Hide those `onX` args from ArgTypes with `table.disable: true`, then document the canonical event under `Events`.
+- Override a docgen-discovered event when it needs a clearer description or payload type; do not create a duplicate row.
+- Preserve native listener fallthrough when the corresponding native element is the component root. A root `<button>`, for example, supports Vue `@click` without declaring and re-emitting it.
+- Declare typed emits for component-owned events and events forwarded from an inner element.
+
+### Slots And Story Types
+
+- Declare public slots with typed `defineSlots` entries and JSDoc descriptions so Doc Blocks can generate their rows.
+- Show named slots in the API table, but exclude Vue instance metadata such as `$slots` globally.
+- Use a story-only args type for Actions handlers or documentation rows that are not component props. Do not change the runtime component API for documentation-only concerns.
 
 ## Accessibility
 
-Always include **Screen Reader** and **Keyboard Support** subsections.
+Always include `Screen Reader` and `Keyboard Support` subsections.
 
-Under **Screen Reader**, explain labeling, accessible names, announcements, and relevant relationships. Include a short example when the correct labeling pattern is not obvious.
-
-Under **Keyboard Support**, provide a key/function table when the component has keyboard interactions.
-
-| Key | Function |
-|---|---|
-| `Enter` | Activates the focused button. |
-| `Space` | Activates the focused button. |
-
-State when a native element supplies expected keyboard behavior. For complex interactive components, document the behavior provided by PrimeVue and any Axis-specific additions.
+- **Screen Reader:** Explain accessible names, labeling, announcements, and relationships. Add a short example when the correct pattern is not obvious.
+- **Keyboard Support:** Use a key/function table for component interactions. State when native semantics provide the behavior.
+- **Complex components:** Document behavior supplied by PrimeVue and any Axis-specific additions.
 
 ## Navigation And Release History
 
-The global Storybook table of contents reads `h2` and `h3` headings, so Usage, Variants, API, Accessibility, and accessibility subsections appear automatically.
-
-Do not add component-level version history. Package changes belong in the future package changelog and standalone Release Notes page.
+The global Storybook table of contents reads `h2` and `h3` headings. Do not add component-level version history; package changes belong in the package changelog and Release Notes.

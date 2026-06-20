@@ -76,7 +76,7 @@ Example:
 ## Workflow
 
 - Read `docs/spec.md` before implementation work.
-- Update `docs/architecture.md` when architecture decisions change.
+- Use `docs/architecture/overview.md` to route durable decisions to the matching architecture domain.
 - Run `pnpm run build` before considering package changes complete.
 ```
 
