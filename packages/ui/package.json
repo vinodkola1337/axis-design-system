@@ -14,6 +14,10 @@
       "import": "./dist/button.js",
       "types": "./dist/button.d.ts"
     },
+    "./card": {
+      "import": "./dist/card.js",
+      "types": "./dist/card.d.ts"
+    },
     "./icon": {
       "import": "./dist/icon.js",
       "types": "./dist/icon.d.ts"

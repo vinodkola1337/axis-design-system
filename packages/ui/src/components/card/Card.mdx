@@ -1,0 +1,124 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks'
+import * as Stories from './Card.stories'
+
+<Meta of={Stories} />
+
+# Card
+
+## Overview
+
+Card groups related content, media, and actions so users can compare options and make selections in surfaces such as menu ordering flows.
+
+<Canvas of={Stories.Playground} />
+
+## Usage
+
+```vue
+<script setup lang="ts">
+import { Card } from '@vinodkola/axis-ui'
+</script>
+
+<template>
+  <Card
+    title="Margherita pizza"
+    subtitle="$12.00"
+    media-src="/menu/margherita-pizza.png"
+    media-alt="Margherita pizza with basil"
+  >
+    <p>Fresh mozzarella, tomato, basil, and olive oil.</p>
+  </Card>
+</template>
+```
+
+- **Group one decision per card:** Keep the title, supporting copy, media, and actions focused on one selectable item or content object.
+- **Keep action hierarchy inside the card clear:** Use a single primary action in the footer when the card has its own command, such as adding a menu item.
+- **Use media to support recognition:** Include meaningful images for product or menu cards, and provide useful alternative text when the image conveys content.
+- **Make the whole card interactive only for selection:** Use `interactive` when selecting the card is the action; keep buttons or links inside static cards for explicit commands.
+
+| Use | Avoid |
+|---|---|
+| Use cards for repeatable menu items that share the same information structure. | Avoid using cards for unrelated controls that do not form comparable choices. |
+| Put price or compact metadata in `subtitle` for fast scanning. | Avoid burying primary comparison details deep in body copy. |
+| Use a footer action when the command belongs to the item. | Avoid making every region of a complex card compete for clicks. |
+
+## Variants
+
+### Surface
+
+The `variant` prop controls the card's surface treatment.
+
+<Canvas of={Stories.Variants} />
+
+| Variant | Use when |
+|---|---|
+| Outlined | The card sits on a default page surface and needs a clear boundary. |
+| Raised | The card needs slightly stronger separation from a dense or subtle background. |
+
+### Orientation
+
+The `orientation` prop controls whether media stacks above content or sits beside it.
+
+<Canvas of={Stories.Orientations} />
+
+| Orientation | Use when |
+|---|---|
+| Vertical | Cards appear in image-led grids where scanning the visual first helps users compare options. |
+| Horizontal | Cards appear in compact lists, carts, or review surfaces where height is constrained. |
+
+### Padding
+
+The `padding` prop controls interior content spacing.
+
+<Canvas of={Stories.Padding} />
+
+| Padding | Use when |
+|---|---|
+| Small | Dense lists or compact dashboard regions need tighter spacing. |
+| Medium | Standard card grids and menu item cards need balanced density. |
+| Large | Prominent content needs a more spacious reading area. |
+
+### Selection States
+
+The `interactive`, `selected`, and `disabled` props support selectable card patterns.
+
+<Canvas of={Stories.SelectionStates} />
+
+| State | Use when |
+|---|---|
+| Interactive | Selecting the card itself is the primary action. |
+| Selected | The card represents the active choice in a group. |
+| Disabled | The choice is unavailable and should not be activated. |
+
+### Menu Grid
+
+Use repeated cards for menu ordering lists when each item needs media, description, price, and an add action.
+
+<Canvas of={Stories.MenuGrid} />
+
+## API
+
+<ArgTypes />
+
+Use `title`, `subtitle`, `mediaSrc`, and `mediaAlt` for the standard card structure. Slots are available for media, header, title, subtitle, main content, and footer when the card needs richer composition.
+
+## Accessibility
+
+### Screen Reader
+
+Use a clear `title` so each card begins with an understandable item name. Provide `mediaAlt` when the image helps identify the item; use an empty alt value for decorative media.
+
+When `interactive` is true, Card keeps its rich article structure and adds button-like semantics, keyboard activation, and `aria-pressed` for `selected`. Use this pattern for selectable cards. For cards that contain their own buttons or links, keep the Card static so nested interactive controls remain predictable.
+
+```vue
+<Card title="Margherita pizza" subtitle="$12.00" interactive :selected="isSelected" />
+```
+
+### Keyboard Support
+
+| Key | Function |
+|---|---|
+| `Tab` | Moves focus to an interactive card, or to interactive controls inside a static card. |
+| `Enter` | Activates an interactive card. |
+| `Space` | Activates an interactive card. |
+
+Card renders as `<article>`. Interactive cards add button-like keyboard behavior; static cards rely on their child controls for keyboard interaction.

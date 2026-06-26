@@ -1,4 +1,5 @@
 export { Button } from './button'
+export { Card } from './card'
 export { Icon } from './icon'
 export { Label } from './label'
 export { TextInput } from './text-input'
