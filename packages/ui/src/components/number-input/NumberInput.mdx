@@ -1,0 +1,154 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks'
+import * as Stories from './NumberInput.stories'
+
+<Meta of={Stories} />
+
+# NumberInput
+
+## Overview
+
+NumberInput lets users enter, edit, and review numeric values with locale-aware formatting while keeping application state numeric.
+
+<Canvas of={Stories.Playground} />
+
+## Usage
+
+```vue
+<script setup lang="ts">
+import { NumberInput } from '@vinodkola/axis-ui'
+
+const amount = ref<number | null>(1234.5)
+</script>
+
+<template>
+  <NumberInput
+    v-model="amount"
+    label="Amount"
+    locale="en-US"
+    :minimum-fraction-digits="2"
+    :maximum-fraction-digits="2"
+  />
+</template>
+```
+
+- **Use numeric state:** Bind `v-model` to `number | null` so calculations, validation, and submission do not depend on display formatting.
+- **Match the user's locale:** Set `locale` when the product already knows the user's language or region; otherwise the browser locale is used.
+- **Choose fraction digits deliberately:** Use fixed fraction digits for money-like values and fewer constraints for counts or measurements.
+- **Validate with context:** NumberInput sets native custom validity for parse and range errors, but product forms should still pair invalid state with visible text that names the acceptable range, precision, or unit.
+- **Keep density consistent:** Use one size within a form section unless a compact or spacious layout has a clear purpose.
+
+| Use | Avoid |
+|---|---|
+| Use NumberInput for quantities, percentages, amounts, and measurements that need numeric state. | Avoid using TextInput for values that the application must calculate with. |
+| Use helper or label text to identify the unit, such as "Weight in kg". | Avoid relying on placeholder text as the only unit instruction. |
+| Keep related numeric fields aligned for fast comparison. | Avoid arbitrary widths that make totals or ranges hard to scan. |
+
+## Locale
+
+NumberInput uses `Intl.NumberFormat` with a BCP 47 `locale` value to format and parse decimal marks, grouping separators, and localized numerals.
+
+<Canvas of={Stories.Locales} />
+
+| Locale | Display behavior |
+|---|---|
+| `en-US` | Uses comma grouping and a period decimal separator, such as `1,234,567.89`. |
+| `de-DE` | Uses period grouping and a comma decimal separator, such as `1.234.567,89`. |
+| `fr-FR` | Uses space-style grouping and a comma decimal separator. |
+| `hi-IN` | Uses Indian digit grouping, such as `12,34,567.89`. |
+
+Use the same locale that the surrounding page uses for dates, currency, and measurement labels. Axis keeps the value as a number and only localizes the editing surface; currency symbols and unit labels should be rendered outside the input so screen readers get a clear field name.
+
+## Variants
+
+### Formatting
+
+The `minimumFractionDigits`, `maximumFractionDigits`, and `useGrouping` props control how the value is displayed when the field is not focused.
+
+<Canvas of={Stories.Formatting} />
+
+| Option | Use when |
+|---|---|
+| Fraction digits | The value needs stable precision, such as rates or amounts. |
+| Grouping | Large values should be easier to scan. |
+| No grouping | The value is an identifier, code, or compact numeric token. |
+
+### Sizes
+
+The `size` prop controls the input height, text size, and horizontal padding.
+
+<Canvas of={Stories.Sizes} />
+
+| Size | Use when |
+|---|---|
+| Small | Space is constrained, such as filters, toolbars, or dense data-entry surfaces. |
+| Medium | The field appears in standard forms and settings pages. |
+| Large | The field needs a larger touch target or stronger prominence in a spacious layout. |
+
+### Validation
+
+The `required`, `invalid`, `error`, `min`, and `max` props communicate required input and validation feedback. NumberInput preserves out-of-range typed values and sets native custom validity so form submission can be blocked without silently rewriting the field.
+
+<Canvas of={Stories.ValidationStates} />
+
+| State | Use when |
+|---|---|
+| Required | The field must be completed before submission. |
+| Error | The value failed validation and the user needs corrective guidance. |
+| Invalid | The field should be marked invalid when validation text is rendered elsewhere. |
+
+### States
+
+The `disabled` and `readonly` props control whether the user can interact with or edit the input.
+
+<Canvas of={Stories.InteractionStates} />
+
+| State | Use when |
+|---|---|
+| Editable | Users can enter or change the value. |
+| Read-only | Users may need to focus, select, or copy a value but cannot change it. |
+| Disabled | The field is unavailable and should be skipped by keyboard navigation. |
+
+## API
+
+<ArgTypes />
+
+Use `label` for the standard field label and `error` for validation text. The `label` and `error` slots are available when the visible content needs inline formatting. Native attributes and listeners that belong on the inner `<input>` can be passed through `inputAttrs`; root attributes fall through to the wrapper.
+
+NumberInput uses `type="text"` for locale-aware parsing, then calls `setCustomValidity` for invalid numbers and `min` or `max` range errors. This follows the common design-system pattern for formatted numeric fields: preserve what the user typed, support native form validity, and let applications decide when to show persistent helper or error text.
+
+## Accessibility
+
+### Screen Reader
+
+Use a visible label for every NumberInput. NumberInput associates the label with the inner input through `for` and `id`; pass a stable `id` when external help text or tests need a predictable relationship.
+
+```vue
+<p id="amount-help">Enter the invoice amount before tax.</p>
+
+<NumberInput
+  id="invoice-amount"
+  v-model="amount"
+  label="Invoice amount"
+  locale="en-US"
+  described-by="amount-help"
+  error="Enter an amount greater than zero."
+/>
+```
+
+Error text is appended to `aria-describedby` automatically, and invalid fields set `aria-invalid`. NumberInput exposes spinbutton semantics with `aria-valuemin`, `aria-valuemax`, and `aria-valuenow` when those values are available. Custom validity blocks invalid form submission, but visible `error` text is still recommended so screen reader and sighted users get persistent guidance before submit.
+
+### Keyboard Support
+
+| Key | Function |
+|---|---|
+| `Tab` | Moves focus to the input when it is enabled. |
+| Number keys | Enters digits according to the active locale. |
+| Decimal separator | Enters the locale decimal separator. |
+| `ArrowUp` | Increases the value by `step`. |
+| `ArrowDown` | Decreases the value by `step`. |
+| `PageUp` | Increases the value by ten times `step`. |
+| `PageDown` | Decreases the value by ten times `step`. |
+| `Home` | Moves to `min` when `min` is set. |
+| `End` | Moves to `max` when `max` is set. |
+
+NumberInput uses a text input with decimal input mode instead of native `type="number"` because browsers do not provide consistent locale parsing for number inputs. Axis adds standard spinbutton keyboard behavior so numeric adjustment remains available without giving up localized display.

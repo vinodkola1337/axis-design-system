@@ -26,6 +26,10 @@
       "import": "./dist/label.js",
       "types": "./dist/label.d.ts"
     },
+    "./number-input": {
+      "import": "./dist/number-input.js",
+      "types": "./dist/number-input.d.ts"
+    },
     "./text-input": {
       "import": "./dist/text-input.js",
       "types": "./dist/text-input.d.ts"

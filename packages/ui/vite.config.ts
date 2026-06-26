@@ -27,6 +27,7 @@ export default defineConfig({
         card: fileURLToPath(new URL('src/components/card/index.ts', import.meta.url)),
         icon: fileURLToPath(new URL('src/components/icon/index.ts', import.meta.url)),
         label: fileURLToPath(new URL('src/components/label/index.ts', import.meta.url)),
+        'number-input': fileURLToPath(new URL('src/components/number-input/index.ts', import.meta.url)),
         'text-input': fileURLToPath(new URL('src/components/text-input/index.ts', import.meta.url)),
       },
       formats: ['es'],

@@ -6,10 +6,10 @@ Read this file before implementation work. It is the progress source of truth; d
 
 - [x] Monorepo, token build pipeline, UI package, and Storybook 10 documentation app are established.
 - [x] The three-tier token model (primitive, semantic, and component) is in use.
-- [x] Button, Card, Icon, TextInput, and Label are implemented and tokenized.
+- [x] Button, Card, Icon, Label, NumberInput, and TextInput are implemented and tokenized.
 - [x] Core Storybook foundations, system style documentation, accessibility tests, and the component documentation template are established.
 - [x] Button documentation is complete.
-- [x] TextInput documentation is complete.
+- [x] TextInput and NumberInput documentation is complete.
 
 ## In Progress
 
