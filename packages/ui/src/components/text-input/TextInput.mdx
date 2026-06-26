@@ -1,0 +1,145 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks'
+import * as Stories from './TextInput.stories'
+
+<Meta of={Stories} />
+
+# TextInput
+
+## Overview
+
+TextInput lets users enter and edit short pieces of text in forms, filters, and account settings.
+
+<Canvas of={Stories.Playground} />
+
+## Usage
+
+```vue
+<script setup lang="ts">
+import { TextInput } from '@vinodkola/axis-ui'
+</script>
+
+<template>
+  <TextInput
+    v-model="email"
+    label="Email address"
+    placeholder="name@example.com"
+    type="email"
+    autocomplete="email"
+  />
+</template>
+```
+
+- **Label every field:** Use a visible label so users know what value is expected before they interact with the input.
+- **Use placeholders as examples only:** Keep placeholder text short and avoid using it as the only instruction because it disappears as users type.
+- **Match the input type to the data:** Use email, search, tel, or url types when they improve validation, keyboard layout, and browser autofill.
+- **Show validation near the field:** Pair invalid state with helpful error text so users can correct the value without hunting for context.
+- **Keep density consistent:** Use one size within a form section unless a compact or spacious layout has a clear purpose.
+
+| Use | Avoid |
+|---|---|
+| Group related fields in a predictable order, such as name before email in a contact form. | Avoid mixing unrelated fields in the same form section. |
+| Use read-only fields when users may need to copy a generated value. | Avoid disabling values that users still need to select or copy. |
+| Keep field widths aligned within a form section for easier scanning. | Avoid arbitrary widths that make related fields look disconnected. |
+
+## Variants
+
+### Label Style
+
+The `floatLabel` prop changes whether the label appears above the field or inside the field until focus or input.
+
+<Canvas of={Stories.LabelStyles} />
+
+| Label style | Use when |
+|---|---|
+| Standard label | Most forms, especially when fields need clear scanning and stable labels. |
+| Floating label | Dense forms where the label should stay attached to the field after the user enters a value. |
+
+### Input Types
+
+The `type` prop sets the native input type and should match the expected data.
+
+<Canvas of={Stories.InputTypes} />
+
+| Type | Use when |
+|---|---|
+| `text` | The value is plain text without a more specific semantic type. |
+| `email` | The value is an email address and should use email keyboard and browser validation behavior. |
+| `password` | The value is secret and should be obscured by the browser. |
+| `search` | The field filters or searches content. |
+| `tel` | The value is a telephone number and benefits from a telephone keyboard. |
+| `url` | The value is a web address. |
+
+### Sizes
+
+The `size` prop controls the input height, text size, and horizontal padding.
+
+<Canvas of={Stories.Sizes} />
+
+| Size | Use when |
+|---|---|
+| Small | Space is constrained, such as filters, toolbars, or dense data-entry surfaces. |
+| Medium | The field appears in standard forms and settings pages. |
+| Large | The field needs a larger touch target or stronger prominence in a spacious layout. |
+
+### Validation
+
+The `required`, `invalid`, and `error` props communicate required input and validation feedback.
+
+<Canvas of={Stories.ValidationStates} />
+
+| State | Use when |
+|---|---|
+| Required | The field must be completed before submission. |
+| Error | The value failed validation and the user needs corrective guidance. |
+| Invalid | The field should be marked invalid when validation text is rendered elsewhere. |
+
+### States
+
+The `disabled` and `readonly` props control whether the user can interact with or edit the input.
+
+<Canvas of={Stories.InteractionStates} />
+
+| State | Use when |
+|---|---|
+| Editable | Users can enter or change the value. |
+| Read-only | Users may need to focus, select, or copy a value but cannot change it; Axis uses a subtle filled surface to distinguish it from editable fields. |
+| Disabled | The field is unavailable and should be skipped by keyboard navigation. |
+
+## API
+
+<ArgTypes />
+
+Use `label` for the standard field label and `error` for validation text. The `label` and `error` slots are available when the visible content needs inline formatting. Native attributes and listeners that belong on the inner `<input>` can be passed through `inputAttrs`; root attributes fall through to the wrapper.
+
+## Accessibility
+
+### Screen Reader
+
+Use a visible label for every TextInput. TextInput associates the label with the inner input through `for` and `id`; pass a stable `id` when external help text or tests need a predictable relationship.
+
+```vue
+<p id="email-help">Use the email address where we should send receipts.</p>
+
+<TextInput
+  id="email"
+  v-model="email"
+  label="Email address"
+  type="email"
+  autocomplete="email"
+  described-by="email-help"
+  error="Enter a valid email address."
+/>
+```
+
+Error text is appended to `aria-describedby` automatically, and invalid fields set `aria-invalid`. Add `describedBy` when the field also has external help text.
+
+### Keyboard Support
+
+| Key | Function |
+|---|---|
+| `Tab` | Moves focus to the input when it is enabled. |
+| Character keys | Enters text according to the native input type. |
+| Arrow keys | Moves the text cursor within the field. |
+| `Ctrl+A` / `Command+A` | Selects the input value when supported by the browser. |
+
+TextInput uses a native HTML `<input>`, so browser focus, editing, selection, autocomplete, required, disabled, and read-only behavior are preserved.

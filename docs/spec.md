@@ -9,13 +9,11 @@ Read this file before implementation work. It is the progress source of truth; d
 - [x] Button, Icon, TextInput, and Label are implemented and tokenized.
 - [x] Core Storybook foundations, system style documentation, accessibility tests, and the component documentation template are established.
 - [x] Button documentation is complete.
+- [x] TextInput documentation is complete.
 
 ## In Progress
 
-- [ ] Add complete TextInput documentation using the component documentation template.
-- [ ] Complete interactive Controls for public component props.
-- [ ] Complete slot and emitted-event documentation where applicable.
-- [ ] Verify Storybook Docs pages and Controls in the browser and production build.
+- None.
 
 ## Roadmap
 

@@ -47,7 +47,7 @@
 </template>
 
 <script setup lang="ts">
-import { computed, getCurrentInstance, useSlots } from 'vue'
+import { computed, getCurrentInstance } from 'vue'
 import AxisLabel from '../label/Label.vue'
 
 defineOptions({
@@ -91,8 +91,13 @@ const emit = defineEmits<{
   focus: [event: FocusEvent]
   blur: [event: FocusEvent]
 }>()
+const slots = defineSlots<{
+  /** Replaces the label text while preserving the input-label relationship. */
+  label?: () => unknown
+  /** Replaces the error message content associated with the input. */
+  error?: () => unknown
+}>()
 const instance = getCurrentInstance()
-const slots = useSlots()
 
 const inputId = computed(() => props.id ?? `axis-text-input-${instance?.uid}`)
 const errorId = computed(() => `${inputId.value}-error`)
@@ -179,6 +184,10 @@ const describedBy = computed(() =>
   border-color: var(--axis-text-input-border-color-hover);
 }
 
+.axis-text-input__control:read-only:not(:disabled) {
+  background: var(--axis-text-input-color-bg-readonly);
+}
+
 .axis-text-input__control:focus {
   outline: none;
 }
@@ -232,6 +241,10 @@ const describedBy = computed(() =>
     inset-block-start 120ms ease,
     transform 120ms ease;
   white-space: nowrap;
+}
+
+.axis-text-input--float-label .axis-text-input__field:has(.axis-text-input__control:read-only) .axis-text-input__label {
+  background: var(--axis-text-input-color-bg-readonly);
 }
 
 .axis-text-input--float-label.axis-text-input--sm .axis-text-input__label {
