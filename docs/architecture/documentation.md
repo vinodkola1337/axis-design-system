@@ -7,5 +7,3 @@ Storybook is hosted by the private `@axis/docs` package. Stories and MDX remain 
 - API tables are generated from Vue metadata rather than duplicated manually.
 - Vitest browser and accessibility automation are independent of whether the Interactions panel is shown.
 - System-level guidance such as colors, typography, spacing, accessibility, and icons lives under Storybook Styles pages.
-
-Authoring structure, Controls, events, slots, Actions, and accessibility documentation rules live in `docs/component-documentation.md`.

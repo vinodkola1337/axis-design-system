@@ -257,3 +257,47 @@ Separate from CLAUDE.md. Stored at `~/.claude/projects/<project>/memory/`.
 | Examples | "Use Composition API" | "User has PrimeVue DS experience" |
 
 **Memory is not fully loaded every session.** Claude retrieves only what's relevant to the current task. Working on Vue UI files? It may load `Use PrimeVue` but skip unrelated backend memories.
+
+---
+
+## Skills
+
+A **skill** is a task-specific instruction bundle that an AI coding agent can discover and load when relevant. It is not a new kind of intelligence; it is a packaging and retrieval mechanism for instructions, examples, scripts, references, and assets.
+
+The core idea is progressive disclosure:
+
+| Layer | Loaded when | Purpose |
+|---|---|---|
+| Skill metadata | Always available in compact form | Helps the agent decide whether the skill applies |
+| `SKILL.md` body | Only after the skill matches the task | Gives the task-specific workflow |
+| References/scripts/assets | Only when the skill workflow needs them | Provides deeper docs, deterministic tools, or reusable templates |
+
+The skill metadata is usually short: a `name` and a descriptive `description`. The description must be specific enough for the agent to recognize the trigger, but short enough not to waste context.
+
+Example:
+
+```yaml
+---
+name: component-docs
+description: Create or update component documentation, examples, API tables, controls, events, slots, and accessibility guidance.
+---
+```
+
+Once the agent sees a user request like "add component docs", it can match that request to the metadata, load the skill, and follow the workflow.
+
+| | Always-on instruction | Traditional doc | Skill |
+|---|---|---|---|
+| Example | `AGENTS.md` / `CLAUDE.md` | Project documentation | `some-task/SKILL.md` |
+| Discovery | Automatically loaded by the coding tool | Must be referenced, searched, or explicitly read | Advertises itself through metadata |
+| Best for | Repo-wide rules and constraints | Source-of-truth project knowledge | Repeatable task workflows |
+| Context cost | Paid on most or every request | Paid only when read | Metadata is cheap; body loads only when triggered |
+
+The practical distinction is not the final content. A skill and a normal doc may both contain Markdown instructions. The difference is that a skill is designed for agent discovery and execution.
+
+The short mental model:
+
+```
+Skill = compact trigger metadata + task-specific workflow + optional reusable resources
+```
+
+Use a skill when the workflow is important, repeated, and specific enough that putting it in always-loaded repo instructions would pollute the context window.

@@ -54,4 +54,3 @@ Dark-theme assets are not yet published. Theme implementation progress is tracke
 
 - [Project status](docs/spec.md)
 - [Architecture overview](docs/architecture/overview.md)
-- [Component documentation guide](docs/component-documentation.md)

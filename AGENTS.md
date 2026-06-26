@@ -16,7 +16,6 @@ Axis is a token-driven Vue 3 design system in a pnpm workspace. Design tokens ar
 
 - Before implementation work, read `docs/spec.md` for current status and priorities. Update it when roadmap status changes.
 - For architecture, package boundaries, tokens, theming, component strategy, design guidance, or releases, read `docs/architecture/overview.md` and follow its domain routing before making decisions.
-- For component documentation, Storybook Docs, stories, Controls, slots, events, or API tables, read `docs/component-documentation.md` before editing.
 
 Do not load specialized documents when their subject is unrelated to the task.
 
@@ -27,7 +26,6 @@ Do not load specialized documents when their subject is unrelated to the task.
 - `packages/docs`: private Storybook documentation app
 - `docs/spec.md`: current project status and roadmap
 - `docs/architecture/overview.md`: architecture overview and domain routing
-- `docs/component-documentation.md`: component documentation authoring workflow
 
 ## Commands
 

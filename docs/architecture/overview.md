@@ -31,7 +31,6 @@ axis-design-system/
 |-- docs/
 |   |-- architecture/ # Architecture gateway and domain decisions
 |   |-- learning/     # Learning notes, not mandatory implementation context
-|   |-- component-documentation.md
 |   `-- spec.md
 |-- AGENTS.md         # Universal model instructions and context routing
 |-- package.json
