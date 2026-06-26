@@ -1,0 +1,119 @@
+import { ArgTypes, Canvas, Meta } from '@storybook/addon-docs/blocks'
+import * as Stories from './Dialog.stories'
+
+<Meta of={Stories} />
+
+# Dialog
+
+## Overview
+
+Dialog interrupts the current flow with a focused task, confirmation, or short decision that must be resolved before users return to the page.
+
+<Canvas of={Stories.Playground} />
+
+## Usage
+
+```vue
+<script setup lang="ts">
+import { Button, Dialog } from '@vinodkola/axis-ui'
+
+const isOpen = ref(false)
+</script>
+
+<template>
+  <Button label="Open dialog" @click="isOpen = true" />
+  <Dialog
+    v-model="isOpen"
+    title="Add menu item"
+    description="Review the item before adding it to the order."
+  >
+    <p>Margherita pizza, $12.00</p>
+  </Dialog>
+</template>
+```
+
+- **Use dialogs for bounded decisions:** Keep the task narrow enough that users can finish it without navigating away or comparing page content behind the scrim.
+- **Lead with a clear title:** The title becomes the dialog's accessible name, so it should describe the decision or task rather than the component type.
+- **Prefer explicit actions:** Put primary and secondary commands in the footer so the resolution path is predictable.
+- **Reserve alert dialogs for urgent decisions:** Use `role="alertdialog"` when the content needs immediate assistive technology attention, such as destructive confirmation.
+
+| Use | Avoid |
+|---|---|
+| Ask users to confirm a destructive menu or account action. | Use a dialog for routine inline edits that can happen directly on the page. |
+| Keep content short with one primary action. | Put long workflows, tables, or multi-step navigation inside a modal surface. |
+| Let Escape and the close button dismiss reversible dialogs. | Allow scrim dismissal for high-risk destructive confirmations. |
+
+Axis Dialog is built natively so the design system owns the public API, focus behavior, and MD3-aligned visual treatment without adding a component dependency before the broader PrimeVue decision is needed.
+
+## Variants
+
+### Size
+
+The `size` prop controls the dialog's max width.
+
+<Canvas of={Stories.Sizes} />
+
+| Size | Use when |
+|---|---|
+| Small | The dialog asks for a compact confirmation or one short choice. |
+| Medium | The dialog contains the standard title, supporting text, body content, and footer actions. |
+| Large | The task needs more readable space but should still remain a focused modal task. |
+
+### Padding
+
+The `padding` prop controls interior spacing.
+
+| Padding | Use when |
+|---|---|
+| Small | Dense confirmation content needs compact spacing. |
+| Medium | Most dialog tasks need balanced spacing. |
+| Large | The dialog contains richer explanatory content or prominent custom slots. |
+
+### Alert Dialog
+
+The `role` prop can be set to `alertdialog` for urgent confirmations. Disable scrim dismissal for destructive actions so users make an explicit choice.
+
+<Canvas of={Stories.AlertDialog} />
+
+| Role | Use when |
+|---|---|
+| Dialog | The task is important but not urgent or destructive. |
+| Alertdialog | The task is urgent, destructive, or requires immediate attention. |
+
+### Custom Slots
+
+Use named slots when the default title, description, body, and footer structure needs richer composition.
+
+<Canvas of={Stories.CustomSlots} />
+
+## API
+
+<ArgTypes />
+
+Dialog is a controlled component. Bind `v-model` to open and close it, and listen for `close` when the close reason matters.
+
+## Accessibility
+
+### Screen Reader
+
+Provide a `title` or `#title` slot so the dialog has an accessible name through `aria-labelledby`. Use `description` or `#description` when supporting text helps users understand the decision. Dialog renders with `aria-modal="true"` by default and moves focus inside the dialog when it opens.
+
+```vue
+<Dialog
+  v-model="isOpen"
+  title="Remove saved item?"
+  description="This action cannot be undone."
+  role="alertdialog"
+  :close-on-scrim="false"
+/>
+```
+
+### Keyboard Support
+
+| Key | Function |
+|---|---|
+| `Tab` | Moves focus through focusable controls inside the dialog. |
+| `Shift + Tab` | Moves focus backward through focusable controls inside the dialog. |
+| `Escape` | Requests close when `closeOnEscape` is true. |
+
+Dialog restores focus to the previously focused element after it closes. Use `initialFocus` when the first interactive element is not the right starting point for the task.

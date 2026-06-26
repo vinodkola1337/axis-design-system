@@ -18,6 +18,10 @@
       "import": "./dist/card.js",
       "types": "./dist/card.d.ts"
     },
+    "./dialog": {
+      "import": "./dist/dialog.js",
+      "types": "./dist/dialog.d.ts"
+    },
     "./icon": {
       "import": "./dist/icon.js",
       "types": "./dist/icon.d.ts"

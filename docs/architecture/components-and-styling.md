@@ -9,6 +9,7 @@ Axis does not use an atoms/molecules/organisms directory hierarchy. Those bounda
 ## Implementation Strategy
 
 - Build form controls and other foundational elements from scratch so Axis owns their public API, semantics, and behavior.
+- Build Dialog natively so Axis owns its controlled API, focus behavior, modal semantics, and tokenized MD3 surface treatment.
 - Use PrimeVue in unstyled mode for complex interaction patterns when its accessibility and keyboard behavior reduce meaningful implementation risk.
 - Axis owns the visual layer in both cases through tokens and component styles.
 

@@ -208,7 +208,6 @@ const meta = {
       description: 'Slot that replaces the label text while preserving the input-label relationship.',
       table: {
         category: 'Slots',
-        type: { summary: '() => unknown' },
       },
     },
     errorSlot: {
@@ -217,7 +216,6 @@ const meta = {
       description: 'Slot that replaces the error message content associated with the input.',
       table: {
         category: 'Slots',
-        type: { summary: '() => unknown' },
       },
     },
   },
